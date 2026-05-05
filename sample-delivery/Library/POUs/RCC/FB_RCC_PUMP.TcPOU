@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_RCC_PUMP" Id="{ecb6e357-c313-4cb0-8d54-9c6287211993}" SpecialFunc="None">
+    <Declaration><![CDATA[(*This is a funcitonal prototype for in AIR RCC PUMP / L.V. RCC / WIP NAME*)
+FUNCTION_BLOCK FB_RCC_PUMP
+VAR_IN_OUT
+    stRCC_VRC_01 : ST_VRC;
+    stRCC_VRC_02 : ST_VRC;
+    stRCC_VRC_03 : ST_VRC;
+
+    T1 : TIME;
+    T2 : TIME;
+    T3 : TIME;
+
+    bStart 	: BOOL := FALSE;
+    bStop	: BOOL := FALSE;
+
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    iState 	: INT := E_RCC_PUMP_SM_STATES.IDLE;
+    tTimer1 : TON;
+    tTime : TIME := T#0s;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[tTimer1(IN:=TRUE, PT:= tTime);
+
+IF bStop THEN
+    bStop := FALSE;
+    stRCC_VRC_01.pv_xOPN_SW := FALSE;
+    stRCC_VRC_02.pv_xOPN_SW := FALSE;
+    stRCC_VRC_03.pv_xOPN_SW := FALSE;
+    iState := E_RCC_PUMP_SM_STATES.IDLE;
+END_IF
+
+CASE iState OF
+    E_RCC_PUMP_SM_STATES.IDLE: // IDlE
+
+    IF bStart THEN
+        iState := E_RCC_PUMP_SM_STATES.PRESSURE;
+        bStart := FALSE;
+        tTime := T1;
+        tTimer1(IN:=FALSE); // RESTART TIMER
+    END_IF
+
+    E_RCC_PUMP_SM_STATES.PRESSURE: // PRESSURE
+
+    stRCC_VRC_01.pv_xOPN_SW := FALSE;
+    stRCC_VRC_02.pv_xOPN_SW := FALSE;
+    stRCC_VRC_03.pv_xOPN_SW := TRUE;
+
+    IF tTimer1.Q THEN
+        iState := E_RCC_PUMP_SM_STATES.VACUUM;
+        tTime := T2;
+        tTimer1(IN:=FALSE); // RESTART TIMER
+    END_IF
+
+    E_RCC_PUMP_SM_STATES.VACUUM: // VACUUM
+
+    stRCC_VRC_01.pv_xOPN_SW := FALSE;
+    stRCC_VRC_02.pv_xOPN_SW := TRUE;
+    stRCC_VRC_03.pv_xOPN_SW := FALSE;
+
+    IF tTimer1.Q THEN
+        iState := E_RCC_PUMP_SM_STATES.VENT;
+        tTime := T3;
+        tTimer1(IN:=FALSE); // RESTART TIMER
+    END_IF
+
+    E_RCC_PUMP_SM_STATES.VENT: // VENT;
+
+    stRCC_VRC_01.pv_xOPN_SW := TRUE;
+    stRCC_VRC_02.pv_xOPN_SW := FALSE;
+    stRCC_VRC_03.pv_xOPN_SW := FALSE;
+
+    IF tTimer1.Q THEN
+        iState := E_RCC_PUMP_SM_STATES.VENT;
+    END_IF
+
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

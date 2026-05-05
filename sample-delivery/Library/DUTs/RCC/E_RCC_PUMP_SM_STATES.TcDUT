@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_RCC_PUMP_SM_STATES" Id="{a096e4d2-f6d5-4703-bc2b-ebe9d5cb1313}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_RCC_PUMP_SM_STATES :
+(
+    IDLE := 0,
+    PRESSURE := 1,
+    VACUUM := 2,
+    VENT := 3
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
