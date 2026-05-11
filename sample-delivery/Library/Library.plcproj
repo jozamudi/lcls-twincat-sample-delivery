@@ -16,7 +16,7 @@
     <Implicit_Jitter_Distribution>{ee4a008e-3fc6-4185-92b5-c3a57c0f2c5e}</Implicit_Jitter_Distribution>
     <LibraryReferences>{6f5799fa-7bce-4f89-8794-1ee6574da6eb}</LibraryReferences>
     <Company>SLAC - LCLS</Company>
-    <Released>true</Released>
+    <Released>false</Released>
     <Title>LCLS Sample Delivery</Title>
     <ProjectVersion>0.0.0</ProjectVersion>
   </PropertyGroup>
@@ -95,6 +95,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\IO_Structs\ST_SerialComm.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\RCC\E_RCC_PUMP_SM_STATES.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\RCC\E_RCC_STATES.TcDUT">
@@ -205,6 +208,12 @@
     <Compile Include="POUs\Helpers\FB_ShiftByteArray.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\PCM\FB_MPV1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\PCM\FB_PCM_AIO.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\PCM\FB_PressureControlModule.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -212,6 +221,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\RCC\FB_RCC.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\RCC\FB_RCC_PUMP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\RCC\FB_RCC_SM.TcPOU">

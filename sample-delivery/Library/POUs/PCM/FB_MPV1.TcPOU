@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_MPV1" Id="{ba3e2f33-c936-4cf9-8e17-0622679aedea}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MPV1
+(* Pressure Control Module 0-10v control and readback signal *)
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    {attribute 'pytmc' := '
+        pv: PropAir:01
+     '}
+    stPropAir1 : ST_Proportionair;
+    {attribute 'pytmc' := '
+        pv: PropAir:02
+     '}
+    stPropAir2 : ST_Proportionair;
+
+    PropAir1 : FB_PCM_AIO;
+    PropAir2 : FB_PCM_AIO;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[PropAir1(iq_stRegProp:=stPropAir1, iDEVICE_MAX_PRESSURE := 100);
+PropAir1(iq_stRegProp:=stPropAir1, iDEVICE_MAX_PRESSURE := 100);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
