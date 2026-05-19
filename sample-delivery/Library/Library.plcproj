@@ -18,7 +18,7 @@
     <Company>SLAC - LCLS</Company>
     <Released>false</Released>
     <Title>LCLS Sample Delivery</Title>
-    <ProjectVersion>0.0.0</ProjectVersion>
+    <ProjectVersion>2.1.0</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
@@ -30,6 +30,7 @@
     <Folder Include="DUTs\Sensirion" />
     <Folder Include="DUTs\TEC" />
     <Folder Include="DUTs\Vici" />
+    <Folder Include="DUTs\Vici\EPS" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\RCC" />
     <Folder Include="VISUs" />
@@ -146,6 +147,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\TEC\ST_TECStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Vici\EPS\DUT_VICI_PORT_EPS.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Vici\EPS\ENUM_PORT_STATUS.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Vici\ST_4PViciValveSampleNames.TcDUT">
@@ -265,7 +272,13 @@
     <Compile Include="POUs\Tests\FB_RCC_TEST.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Tests\FB_VICI_EPS_TEST.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\VICI\FB_4PortViciValve.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\VICI\FB_4PVICI_EPS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\VICI\FB_ViciDriver.TcPOU">

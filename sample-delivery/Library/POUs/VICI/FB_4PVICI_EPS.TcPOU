@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_4PVICI_EPS" Id="{89dd5800-3edc-4db3-a7b8-40f2bc027efe}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_4PVICI_EPS EXTENDS FB_4PortViciValve
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bAllPortsLocked : BOOL;
+END_VAR
+VAR_IN_OUT
+	aPortEPS : ARRAY [1 .. 4] OF DUT_VICI_PORT_EPS; // EPS for each port.
+END_VAR
+VAR
+	{attribute 'pytmc' := '
+	pv: PORT
+	io: o
+	'}
+	iNewPortPos : INT;
+	
+	{attribute 'pytmc' := 'pv: CRIX:DPL:MMS:X:EPS:OVRD_MODE'}
+    bEPS_Override : BOOL := FALSE;
+    {attribute 'pytmc' := 'pv: CRIX:DPL:MMS:X:EPS:OVRD_COUNTDOWN'}
+    tEPS_TimerCountDown : STRING := TIME_TO_STRING(T#0s);
+    fbTimer : TON;
+	tEPS_OVRD_RESET_TIME : TIME := T#1m;
+
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[iReqPos := LIMIT(1,iReqPos, 4); // KEEP EPS array index within bounds
+
+M_RESET_OVERRIDE_TIMER();
+
+iNewPortPos := M_EPS_LOGIC(aPortEPS := aPortEPS, 
+							iReqPort := iReqPos,
+							iPrevPort := iNewPortPos,
+							bOverride := FALSE,
+							bAllPortsLocked => bAllPortsLocked);
+
+fbNporValve(iAddress := iAdress, 
+			iNumOfPorts := iNumPorts, 
+			iReqPos := iNewPortPos);
+			
+
+
+(*
+Qs
+- Should there be a valve to stop the flow if none of the EPS conditions are met?
+- Should the VICI valve always go to a EPS condition that is true?
+
+
+PORT ENUM
+- LOCKED 	(EPS not OK)
+- UNLOCKED 	(EPS OK but not active)
+- ACTIVE	(EPS OK and ACTIVE)
+*)]]></ST>
+    </Implementation>
+    <Method Name="M_EPS_LOGIC" Id="{26579bdd-0757-429e-ab10-32602ebdd17d}">
+      <Declaration><![CDATA[METHOD M_EPS_LOGIC : INT
+VAR_INPUT
+	iReqPort : INT;
+	iPrevPort : INT;
+	bOverride : BOOL;
+END_VAR
+VAR_IN_OUT
+	aPortEPS : ARRAY [1 .. 4] OF DUT_VICI_PORT_EPS;
+END_VAR
+VAR_OUTPUT
+	bAllPortsLocked : BOOL;
+END_VAR
+VAR
+	fbEPS : FB_EPS;
+	iIndex : INT := 1;
+	stTempEPS : REFERENCE TO DUT_EPS;
+	stPortStatus : REFERENCE TO ENUM_PORT_STATUS;
+	iEPS_NOT_OK_COUNT : INT;
+	iNewPortPos : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Evaluate all EPS 
+FOR iIndex := 1 TO iNumPorts BY 1 DO
+	
+	fbEPS(eps := aPortEPS[iIndex].stEPS);
+	
+	IF aPortEPS[iIndex].stEPS.bEPS_OK THEN
+		aPortEPS[iIndex].ePortStatus := ENUM_PORT_STATUS.UNLOCKED;
+	ELSE
+		aPortEPS[iIndex].ePortStatus := ENUM_PORT_STATUS.LOCKED;
+		iEPS_NOT_OK_COUNT := iEPS_NOT_OK_COUNT + 1;
+	END_IF
+	
+END_FOR
+
+iNewPortPos := iPrevPort;
+IF aPortEPS[iReqPort].stEPS.bEPS_OK OR bOverride THEN
+	aPortEPS[iReqPort].ePortStatus := ENUM_PORT_STATUS.ACTIVE;
+	iNewPortPos := iReqPort;
+END_IF
+
+IF iEPS_NOT_OK_COUNT = iNumPorts AND NOT bOverride THEN
+	bAllPortsLocked := TRUE;
+ELSE
+	bAllPortsLocked := FALSE;
+END_IF
+
+iEPS_NOT_OK_COUNT := 0;
+
+M_EPS_LOGIC := iNewPortPos;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_RESET_OVERRIDE_TIMER" Id="{ba020a30-4465-4930-9052-433997a4cf4f}">
+      <Declaration><![CDATA[METHOD M_RESET_OVERRIDE_TIMER
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbTimer(IN := bEPS_Override, PT:= tEPS_OVRD_RESET_TIME);
+
+IF bEPS_Override THEN
+    tEPS_TimerCountDown := TIME_TO_STRING(tEPS_OVRD_RESET_TIME - fbTimer.ET);
+END_IF
+
+IF fbTimer.Q THEN
+    bEPS_Override := FALSE;
+    tEPS_TimerCountDown := TIME_TO_STRING(T#0s);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

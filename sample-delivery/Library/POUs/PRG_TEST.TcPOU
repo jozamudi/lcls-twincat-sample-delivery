@@ -4,6 +4,7 @@
     <Declaration><![CDATA[PROGRAM PRG_TEST
 VAR
     fbRCC_TEST : FB_RCC_TEST;
+	fbViciEPS_TEST : FB_VICI_EPS_TEST;
 END_VAR
 ]]></Declaration>
     <Implementation>

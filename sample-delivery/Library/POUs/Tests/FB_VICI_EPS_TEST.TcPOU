@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_VICI_EPS_TEST" Id="{9e7a45ca-c992-443a-af30-6d6586b9a3e1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_VICI_EPS_TEST EXTENDS FB_TestSuite
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TestRequestEpsNotOkPortExpectNoPortChange();]]></ST>
+    </Implementation>
+    <Method Name="TestAllPortsLockedExpectbAllPortsLockedToBeTrue" Id="{d7534117-3ba8-42eb-8609-ee403d58a03b}">
+      <Declaration><![CDATA[METHOD TestAllPortsLockedExpectbAllPortsLockedToBeTrue
+VAR_INPUT
+END_VAR
+VAR
+	fbViciEPS : FB_4PVICI_EPS;
+	aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+	
+	fbEPS : FB_EPS;
+	
+	bAllPortsLocked : BOOL;
+	iReqNewPort : INT;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbEPS(eps:=aEPS[1].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[2].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[3].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[4].stEPS);
+fbEPS.setBit(0, TRUE);
+
+iReqNewPort := fbViciEPS.M_EPS_LOGIC(
+	aPortEPS := aEPS, 
+	iReqPort := 1 ,
+	iPrevPort := iReqNewPort,
+	bOverride := FALSE,
+	bAllPortsLocked => bAllPortsLocked
+);
+
+AssertEquals_BOOL(
+	Expected:= FALSE ,
+	Actual:= bAllPortsLocked,
+    Message:= 'ALL PORTS ARE LOCKED'
+);
+
+fbEPS(eps:=aEPS[1].stEPS);
+fbEPS.setBit(0, FALSE);
+
+fbEPS(eps:=aEPS[2].stEPS);
+fbEPS.setBit(0, FALSE);
+
+fbEPS(eps:=aEPS[3].stEPS);
+fbEPS.setBit(0, FALSE);
+
+fbEPS(eps:=aEPS[4].stEPS);
+fbEPS.setBit(0, FALSE);
+
+iReqNewPort := fbViciEPS.M_EPS_LOGIC(
+	aPortEPS := aEPS, 
+	iReqPort := 1 ,
+	bOverride := FALSE,
+	iPrevPort := iReqNewPort,
+	bAllPortsLocked => bAllPortsLocked
+);
+
+AssertEquals_BOOL(
+	Expected:= TRUE ,
+	Actual:= bAllPortsLocked,
+    Message:= 'ALL PORTS ARE NOT LOCKED'
+);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestEpsPortStatusChangeExpectPortStatusToChange" Id="{89ca8612-4d1a-4a67-a4ac-7c1f417d6511}">
+      <Declaration><![CDATA[METHOD TestEpsPortStatusChangeExpectPortStatusToChange
+VAR_INPUT
+END_VAR
+VAR
+	fbViciEPS : FB_4PVICI_EPS;
+	aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+	
+	fbEPS : FB_EPS;
+	
+	bAllPortsLocked : BOOL;
+	iReqNewPort : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbEPS(eps:=aEPS[1].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[2].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[3].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[4].stEPS);
+fbEPS.setBit(0, TRUE);
+
+// MAKE PORT 1 ACTIVE
+iReqNewPort := fbViciEPS.M_EPS_LOGIC(
+	aPortEPS := aEPS, 
+	iReqPort := 1 ,
+	iPrevPort := iReqNewPort,
+	bOverride := FALSE,
+	bAllPortsLocked => bAllPortsLocked
+);
+
+AssertEquals_INT(
+	Expected:= ENUM_PORT_STATUS.ACTIVE ,
+	Actual:= aEPS[1].ePortStatus,
+    Message:= 'PORT 1: NOT ACTIVE'
+);
+
+// MAKE PORT 1 UNLOCKED 
+iReqNewPort := fbViciEPS.M_EPS_LOGIC(
+	aPortEPS := aEPS, 
+	iReqPort := 2 ,
+	iPrevPort := iReqNewPort,
+	bOverride := FALSE,
+	bAllPortsLocked => bAllPortsLocked
+);
+
+AssertEquals_INT(
+	Expected:= ENUM_PORT_STATUS.UNLOCKED ,
+	Actual:= aEPS[1].ePortStatus,
+    Message:= 'PORT 1: NOT IN UNLOCKED STATE'
+);
+
+// MAKE PORT 1 LOCKED
+fbEPS(eps:=aEPS[1].stEPS);
+fbEPS.setBit(0, FALSE);
+
+iReqNewPort := fbViciEPS.M_EPS_LOGIC(
+	aPortEPS := aEPS, 
+	iReqPort := 2 ,
+	iPrevPort := iReqNewPort,
+	bOverride := FALSE,
+	bAllPortsLocked => bAllPortsLocked
+);
+
+AssertEquals_INT(
+	Expected:= ENUM_PORT_STATUS.LOCKED ,
+	Actual:= aEPS[1].ePortStatus,
+    Message:= 'PORT 1: NOT IN LOCKED STATE'
+);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestLockedPortMovesWithOverrideExpectPortToMove" Id="{6a29d7d9-78d4-48e7-80e2-1bedbd3bcb74}">
+      <Declaration><![CDATA[METHOD TestLockedPortMovesWithOverrideExpectPortToMove
+VAR_INPUT
+END_VAR
+VAR
+	fbViciEPS : FB_4PVICI_EPS;
+	aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+	
+	fbEPS : FB_EPS;
+	bAllPortsLocked : BOOL;
+	iReqNewPort : INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbEPS(eps:=aEPS[1].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[2].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[3].stEPS);
+fbEPS.setBit(0, FALSE);
+
+fbEPS(eps:=aEPS[4].stEPS);
+fbEPS.setBit(0, TRUE);
+
+// REQUEST PORT 1
+iReqNewPort := fbViciEPS.M_EPS_LOGIC(aPortEPS := aEPS, 
+	iReqPort := 1 ,
+	iPrevPort := iReqNewPort,
+	bOverride := FALSE,
+	bAllPortsLocked => bAllPortsLocked);
+
+AssertEquals_INT(Expected:= 1 ,
+	Actual:= iReqNewPort,
+    Message:= 'VICI EPS DID NOT MOVE TO ALLOWED PORT');
+
+// REQUEST PORT 3
+iReqNewPort := fbViciEPS.M_EPS_LOGIC(aPortEPS := aEPS, 
+	iReqPort := 3 ,
+	iPrevPort := iReqNewPort,
+	bOverride := TRUE, // OVERRIDE ENABLED
+	bAllPortsLocked => bAllPortsLocked);
+
+AssertEquals_INT(Expected:= 3 ,
+	Actual:= iReqNewPort,
+    Message:= 'VICI EPS OVERRIDE FAILED');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestRequestEpsNotOkPortExpectNoPortChange" Id="{2deb68af-d1f2-4ae5-8783-ea2517fe3682}">
+      <Declaration><![CDATA[METHOD TestRequestEpsNotOkPortExpectNoPortChange
+VAR_INPUT
+END_VAR
+VAR
+	fbViciEPS : FB_4PVICI_EPS;
+	aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+	fbEPS : FB_EPS;
+	bAllPortsLocked : BOOL;
+	iReqNewPort : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbEPS(eps:=aEPS[1].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[2].stEPS);
+fbEPS.setBit(0, TRUE);
+
+fbEPS(eps:=aEPS[3].stEPS);
+fbEPS.setBit(0, FALSE);
+
+fbEPS(eps:=aEPS[4].stEPS);
+fbEPS.setBit(0, TRUE);
+
+// REQUEST PORT 1
+iReqNewPort := fbViciEPS.M_EPS_LOGIC(aPortEPS := aEPS, 
+	iReqPort := 1 ,
+	iPrevPort := iReqNewPort,
+	bOverride := FALSE,
+	bAllPortsLocked => bAllPortsLocked);
+
+AssertEquals_INT(Expected:= 1 ,
+	Actual:= iReqNewPort,
+    Message:= 'VICI EPS DID NOT MOVE TO ALLOWED PORT');
+
+// REQUEST PORT 3
+iReqNewPort := fbViciEPS.M_EPS_LOGIC(aPortEPS := aEPS, 
+	iReqPort := 3 ,
+	iPrevPort := iReqNewPort,
+	bOverride := FALSE,
+	bAllPortsLocked => bAllPortsLocked);
+
+AssertEquals_INT(Expected:= 1 ,
+	Actual:= iReqNewPort,
+    Message:= 'VICI EPS MOVED TO BLOCKED PORT');]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
