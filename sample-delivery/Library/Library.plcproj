@@ -18,7 +18,7 @@
     <Company>SLAC - LCLS</Company>
     <Released>false</Released>
     <Title>LCLS Sample Delivery</Title>
-    <ProjectVersion>2.1.0</ProjectVersion>
+    <ProjectVersion>0.0.0</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
