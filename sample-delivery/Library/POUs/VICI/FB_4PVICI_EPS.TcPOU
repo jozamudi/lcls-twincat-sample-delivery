@@ -72,8 +72,6 @@ END_VAR
 VAR
 	fbEPS : FB_EPS;
 	iIndex : INT := 1;
-	stTempEPS : REFERENCE TO DUT_EPS;
-	stPortStatus : REFERENCE TO ENUM_PORT_STATUS;
 	iEPS_NOT_OK_COUNT : INT;
 	iNewPortPos : INT;
 END_VAR
