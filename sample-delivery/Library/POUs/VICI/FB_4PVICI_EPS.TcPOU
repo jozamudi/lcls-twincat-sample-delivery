@@ -6,6 +6,7 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	bAllPortsLocked : BOOL;
+	bExternalLock : BOOL;
 END_VAR
 VAR_IN_OUT
 	aPortEPS : ARRAY [1 .. 4] OF DUT_VICI_PORT_EPS; // EPS for each port.
@@ -17,9 +18,9 @@ VAR
 	'}
 	iNewPortPos : INT;
 	
-	{attribute 'pytmc' := 'pv: CRIX:DPL:MMS:X:EPS:OVRD_MODE'}
+	{attribute 'pytmc' := 'pv: OVRD_MODE'}
     bEPS_Override : BOOL := FALSE;
-    {attribute 'pytmc' := 'pv: CRIX:DPL:MMS:X:EPS:OVRD_COUNTDOWN'}
+    {attribute 'pytmc' := 'pv: OVRD_COUNTDOWN'}
     tEPS_TimerCountDown : STRING := TIME_TO_STRING(T#0s);
     fbTimer : TON;
 	tEPS_OVRD_RESET_TIME : TIME := T#1m;
@@ -36,6 +37,7 @@ iNewPortPos := M_EPS_LOGIC(aPortEPS := aPortEPS,
 							iReqPort := iReqPos,
 							iPrevPort := iNewPortPos,
 							bOverride := FALSE,
+							bExternalLockSignal => bExternalLock,
 							bAllPortsLocked => bAllPortsLocked);
 
 fbNporValve(iAddress := iAdress, 
@@ -68,6 +70,7 @@ VAR_IN_OUT
 END_VAR
 VAR_OUTPUT
 	bAllPortsLocked : BOOL;
+	bExternalLockSignal : BOOL; // Signal to external device that port is locked.
 END_VAR
 VAR
 	fbEPS : FB_EPS;
@@ -95,6 +98,12 @@ iNewPortPos := iPrevPort;
 IF aPortEPS[iReqPort].stEPS.bEPS_OK OR bOverride THEN
 	aPortEPS[iReqPort].ePortStatus := ENUM_PORT_STATUS.ACTIVE;
 	iNewPortPos := iReqPort;
+END_IF
+
+IF aPortEPS[iPrevPort].ePortStatus = ENUM_PORT_STATUS.LOCKED AND NOT bOverride THEN
+	bExternalLockSignal := TRUE;
+ELSIF aPortEPS[iPrevPort].ePortStatus <> ENUM_PORT_STATUS.LOCKED OR bOverride THEN
+	bExternalLockSignal := FALSE;
 END_IF
 
 IF iEPS_NOT_OK_COUNT = iNumPorts AND NOT bOverride THEN
