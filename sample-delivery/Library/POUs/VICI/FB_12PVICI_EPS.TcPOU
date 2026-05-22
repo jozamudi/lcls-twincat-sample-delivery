@@ -1,17 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_4PVICI_EPS" Id="{89dd5800-3edc-4db3-a7b8-40f2bc027efe}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_4PVICI_EPS EXTENDS FB_4PortViciValve
+  <POU Name="FB_12PVICI_EPS" Id="{31d89ef3-b073-4080-b347-efa36ca070a2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_12PVICI_EPS
 VAR_INPUT
+    iAdress : INT;
 END_VAR
 VAR_OUTPUT
 	bAllPortsLocked : BOOL;
 	bExternalLock : BOOL;
 END_VAR
 VAR_IN_OUT
-	aPortEPS : ARRAY [1 .. 4] OF DUT_VICI_PORT_EPS; // EPS for each port.
+	aPortEPS : ARRAY [1 .. 12] OF DUT_VICI_PORT_EPS; // EPS for each port.
 END_VAR
 VAR
+    fbNporValve : FB_ViciValve;
+    iNumPorts : INT := 12;
+
+    {attribute 'pytmc' := '
+        pv: iReqPos
+        io: io
+     '}
+    iReqPos : INT;
+    {attribute 'pytmc' := '
+        pv: SampleNames
+        io: io
+     '}
+    stSampleNames : ST_4PViciValveSampleNames;
+	
+	// EPS
 	{attribute 'pytmc' := '
 	pv: PORT
 	io: o
@@ -31,7 +47,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[iReqPos := LIMIT(1,iReqPos, 4); // KEEP EPS array index within bounds
+      <ST><![CDATA[iReqPos := LIMIT(1,iReqPos, iNumPorts); // KEEP EPS array index within bounds
 				
 fbViciEPS(aPortEPS := aPortEPS, 
 	iReqPort := iReqPos,
@@ -43,23 +59,9 @@ fbViciEPS(aPortEPS := aPortEPS,
 	iNewPortPos => iNewPortPos,
 	tEPS_TimerCountDown => tEPS_TimerCountDown);
 
-fbNporValve(iAddress := iAdress, 
-			iNumOfPorts := iNumPorts, 
-			iReqPos := iNewPortPos);
-			
-
-
-(*
-Qs
-- Should there be a valve to stop the flow if none of the EPS conditions are met?
-- Should the VICI valve always go to a EPS condition that is true?
-
-
-PORT ENUM
-- LOCKED 	(EPS not OK)
-- UNLOCKED 	(EPS OK but not active)
-- ACTIVE	(EPS OK and ACTIVE)
-*)]]></ST>
+fbNporValve(iAddress := iAdress,
+	iNumOfPorts := iNumPorts, 
+	iReqPos := iReqPos);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
