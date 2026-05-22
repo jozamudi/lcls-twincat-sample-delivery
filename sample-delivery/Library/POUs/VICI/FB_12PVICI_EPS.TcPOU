@@ -32,7 +32,7 @@ VAR
 	pv: PORT
 	io: o
 	'}
-	iNewPortPos : INT;
+	iNewPort : INT;
 	{attribute 'pytmc' := '
 	pv: EPS
 	io: o
@@ -51,17 +51,17 @@ END_VAR
 				
 fbViciEPS(aPortEPS := aPortEPS, 
 	iReqPort := iReqPos,
-	iPrevPort := iNewPortPos,
+	iPrevPort := iNewPort,
 	bOverride := bEPS_Override,
 	iNumPorts := iNumPorts,
 	bExternalLockSignal => bExternalLock,
 	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iNewPortPos,
+	iNewPortPos => iNewPort,
 	tEPS_TimerCountDown => tEPS_TimerCountDown);
 
 fbNporValve(iAddress := iAdress,
 	iNumOfPorts := iNumPorts, 
-	iReqPos := iReqPos);]]></ST>
+	iReqPos := iNewPort);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
