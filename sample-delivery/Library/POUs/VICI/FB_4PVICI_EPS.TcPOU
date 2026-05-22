@@ -9,7 +9,7 @@ VAR_OUTPUT
 	bExternalLock : BOOL;
 END_VAR
 VAR_IN_OUT
-	aPortEPS : ARRAY [1 .. 4] OF DUT_VICI_PORT_EPS; // EPS for each port.
+	aPortEPS : ARRAY [*] OF DUT_VICI_PORT_EPS; // EPS for each port.
 END_VAR
 VAR
 	{attribute 'pytmc' := '
