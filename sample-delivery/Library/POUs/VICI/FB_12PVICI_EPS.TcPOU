@@ -25,24 +25,24 @@ VAR
         pv: SampleNames
         io: io
      '}
-    stSampleNames : ST_4PViciValveSampleNames;
+    stSampleNames : ST_12ViciValveSampleNames;
 	
 	// EPS
 	{attribute 'pytmc' := '
-	pv: PORT
+	pv: iEPSPORT
 	io: o
 	'}
 	iNewPort : INT;
 	{attribute 'pytmc' := '
-	pv: EPS
+	pv: fbEPS
 	io: o
 	'}
 	fbViciEPS : FB_VICI_EPS;
 
-	{attribute 'pytmc' := 'pv: OVRD_MODE'}
+	{attribute 'pytmc' := 'pv: bOVRD_MODE'}
     bEPS_Override : BOOL := FALSE;
 	
-    {attribute 'pytmc' := 'pv: OVRD_COUNTDOWN'}
+    {attribute 'pytmc' := 'pv: bOVRD_COUNTDOWN'}
     tEPS_TimerCountDown : STRING := TIME_TO_STRING(T#0s);
 END_VAR
 ]]></Declaration>

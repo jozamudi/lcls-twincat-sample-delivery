@@ -155,6 +155,9 @@
     <Compile Include="DUTs\Vici\EPS\ENUM_PORT_STATUS.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Vici\ST_12ViciValveSampleNames.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Vici\ST_4PViciValveSampleNames.TcDUT">
       <SubType>Code</SubType>
     </Compile>

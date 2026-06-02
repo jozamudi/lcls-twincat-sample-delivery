@@ -48,18 +48,7 @@ fbNporValve(iAddress := iAdress,
 			iReqPos := iNewPortPos);
 			
 
-
-(*
-Qs
-- Should there be a valve to stop the flow if none of the EPS conditions are met?
-- Should the VICI valve always go to a EPS condition that is true?
-
-
-PORT ENUM
-- LOCKED 	(EPS not OK)
-- UNLOCKED 	(EPS OK but not active)
-- ACTIVE	(EPS OK and ACTIVE)
-*)]]></ST>
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
