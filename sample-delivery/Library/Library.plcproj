@@ -278,6 +278,9 @@
     <Compile Include="POUs\Tests\FB_VICI_EPS_TEST.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\VICI\FB_12PortVici.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\VICI\FB_12PVICI_EPS.TcPOU">
       <SubType>Code</SubType>
     </Compile>

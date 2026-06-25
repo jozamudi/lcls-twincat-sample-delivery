@@ -6,21 +6,25 @@ STRUCT
       {attribute 'pytmc' := '
         pv: 01
         io: io
+		autosave_pass0: VAL DESC
      '}
      s1 : STRING;
      {attribute 'pytmc' := '
         pv: 02
         io: io
+		autosave_pass0: VAL DESC
      '}
      s2 : STRING;
      {attribute 'pytmc' := '
         pv: 03
         io: io
+		autosave_pass0: VAL DESC
      '}
      s3 : STRING;
      {attribute 'pytmc' := '
         pv: 04
         io: io
+		autosave_pass0: VAL DESC
      '}
      s4 : STRING;
 END_STRUCT

@@ -6,26 +6,31 @@ STRUCT
     {attribute 'pytmc' :='
         pv: Tinterval
         io: io
+		autosave_pass0: VAL DESC
     '} // Time before cycle starts
     TInterval : REAL := 10;
     {attribute 'pytmc' :='
         pv: T1
         io: io
+		autosave_pass0: VAL DESC
     '}
     T1 : REAL := 20;
     {attribute 'pytmc' :='
         pv: T2
         io: io
+		autosave_pass0: VAL DESC
     '}
     T2 : REAL := 10;
     {attribute 'pytmc' :='
         pv: T3
         io: io
+		autosave_pass0: VAL DESC
     '}
     T3 : REAL := 5;
     {attribute 'pytmc' :='
         pv: T4
         io: io
+		autosave_pass0: VAL DESC
     '}
     T4 : REAL := 10;
     {attribute 'pytmc' :=' pv: RUNCLEAN'}
@@ -41,7 +46,10 @@ STRUCT
     {attribute 'pytmc' :=' pv: START_CYCLE'}
     bStartCycle : BOOL  := FALSE;
 
-    {attribute 'pytmc' :=' pv: ILK_Setpoint '}
+    {attribute 'pytmc' :=' 
+		pv: ILK_Setpoint
+		autosave_pass0: VAL DESC
+	 '}
     RCC_GCP_01_INTERLOCK_SETPOINT : REAL := 10;
     {attribute 'pytmc' :=' pv: OverrideMode '}
     xSystemOverrideMode_RCC : BOOL := FALSE;

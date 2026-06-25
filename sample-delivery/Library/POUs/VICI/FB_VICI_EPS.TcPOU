@@ -43,7 +43,6 @@ END_FOR
 
 iNewPortPos := iPrevPort;
 IF aPortEPS[iReqPort].stEPS.bEPS_OK OR bOverride THEN
-	aPortEPS[iReqPort].ePortStatus := ENUM_PORT_STATUS.ACTIVE;
 	iNewPortPos := iReqPort;
 END_IF
 
@@ -61,6 +60,7 @@ END_IF
 
 M_RESET_EPS_TIMER();
 
+aPortEPS[iPrevPort].ePortStatus := ENUM_PORT_STATUS.ACTIVE;
 iIndex := 1;
 iEPS_NOT_OK_COUNT := 0;
 ]]></ST>
