@@ -63,6 +63,7 @@ M_RESET_EPS_TIMER();
 aPortEPS[iPrevPort].ePortStatus := ENUM_PORT_STATUS.ACTIVE;
 iIndex := 1;
 iEPS_NOT_OK_COUNT := 0;
+
 ]]></ST>
     </Implementation>
     <Method Name="M_RESET_EPS_TIMER" Id="{753f5f4a-0a99-4c0c-9d78-aa519bd706dc}">

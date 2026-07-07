@@ -58,6 +58,8 @@ fbViciEPS(aPortEPS := aPortEPS,
 	bAllPortsLocked => bAllPortsLocked,
 	iNewPortPos => iNewPort,
 	tEPS_TimerCountDown => tEPS_TimerCountDown);
+	
+iReqPos := iNewPort; // Updat iReqPos PV  to be the safe port, otherwise when EPS is cleared the requested port would automatically change.
 
 fbNporValve(iAddress := iAdress,
 	iNumOfPorts := iNumPorts, 
