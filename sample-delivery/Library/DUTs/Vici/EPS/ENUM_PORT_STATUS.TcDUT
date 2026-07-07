@@ -5,9 +5,9 @@
 {attribute 'strict'}
 TYPE ENUM_PORT_STATUS :
 (
-	ACTIVE := 0,
-	UNLOCKED := 1,
-	LOCKED := 2
+    ACTIVE := 0,
+    UNLOCKED := 1,
+    LOCKED := 2
 );
 END_TYPE
 ]]></Declaration>

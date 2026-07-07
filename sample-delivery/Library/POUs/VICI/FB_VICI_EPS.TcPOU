@@ -3,59 +3,59 @@
   <POU Name="FB_VICI_EPS" Id="{79a477eb-cca3-419f-8b1e-8d6d23651e0e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_VICI_EPS
 VAR_INPUT
-	iReqPort : INT;
-	iPrevPort : INT;
-	iNumPorts : INT;
+    iReqPort : INT;
+    iPrevPort : INT;
+    iNumPorts : INT;
 END_VAR
 VAR_IN_OUT
-	aPortEPS : ARRAY [*] OF DUT_VICI_PORT_EPS; // EPS for each port.
-	bOverride : BOOL;
+    aPortEPS : ARRAY [*] OF DUT_VICI_PORT_EPS; // EPS for each port.
+    bOverride : BOOL;
 END_VAR
 VAR_OUTPUT
-	bAllPortsLocked : BOOL;
-	bExternalLockSignal : BOOL;
-	iNewPortPos : INT;
-	tEPS_TimerCountDown : STRING;
+    bAllPortsLocked : BOOL;
+    bExternalLockSignal : BOOL;
+    iNewPortPos : INT;
+    tEPS_TimerCountDown : STRING;
 END_VAR
 VAR
     fbTimer : TON;
-	tEPS_OVRD_RESET_TIME : TIME := T#1m;
-	fbEPS : FB_EPS;
-	iIndex : INT := 1;
-	iEPS_NOT_OK_COUNT : INT;
-	
+    tEPS_OVRD_RESET_TIME : TIME := T#1m;
+    fbEPS : FB_EPS;
+    iIndex : INT := 1;
+    iEPS_NOT_OK_COUNT : INT;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// Evaluate all EPS 
+      <ST><![CDATA[// Evaluate all EPS
 FOR iIndex := 1 TO iNumPorts BY 1 DO
-	
-	fbEPS(eps := aPortEPS[iIndex].stEPS);
-	
-	IF aPortEPS[iIndex].stEPS.bEPS_OK THEN
-		aPortEPS[iIndex].ePortStatus := ENUM_PORT_STATUS.UNLOCKED;
-	ELSE
-		aPortEPS[iIndex].ePortStatus := ENUM_PORT_STATUS.LOCKED;
-		iEPS_NOT_OK_COUNT := iEPS_NOT_OK_COUNT + 1;
-	END_IF
-	
+
+    fbEPS(eps := aPortEPS[iIndex].stEPS);
+
+    IF aPortEPS[iIndex].stEPS.bEPS_OK THEN
+        aPortEPS[iIndex].ePortStatus := ENUM_PORT_STATUS.UNLOCKED;
+    ELSE
+        aPortEPS[iIndex].ePortStatus := ENUM_PORT_STATUS.LOCKED;
+        iEPS_NOT_OK_COUNT := iEPS_NOT_OK_COUNT + 1;
+    END_IF
+
 END_FOR
 
 iNewPortPos := iPrevPort;
 IF aPortEPS[iReqPort].stEPS.bEPS_OK OR bOverride THEN
-	iNewPortPos := iReqPort;
+    iNewPortPos := iReqPort;
 END_IF
 
 IF aPortEPS[iPrevPort].ePortStatus = ENUM_PORT_STATUS.LOCKED AND NOT bOverride THEN
-	bExternalLockSignal := TRUE;
+    bExternalLockSignal := TRUE;
 ELSIF aPortEPS[iPrevPort].ePortStatus <> ENUM_PORT_STATUS.LOCKED OR bOverride THEN
-	bExternalLockSignal := FALSE;
+    bExternalLockSignal := FALSE;
 END_IF
 
 IF iEPS_NOT_OK_COUNT = iNumPorts AND NOT bOverride THEN
-	bAllPortsLocked := TRUE;
+    bAllPortsLocked := TRUE;
 ELSE
-	bAllPortsLocked := FALSE;
+    bAllPortsLocked := FALSE;
 END_IF
 
 M_RESET_EPS_TIMER();

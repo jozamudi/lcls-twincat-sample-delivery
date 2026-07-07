@@ -6,11 +6,11 @@ VAR_INPUT
     iAdress : INT;
 END_VAR
 VAR_OUTPUT
-	bAllPortsLocked : BOOL;
-	bExternalLock : BOOL;
+    bAllPortsLocked : BOOL;
+    bExternalLock : BOOL;
 END_VAR
 VAR_IN_OUT
-	aPortEPS : ARRAY [*] OF DUT_VICI_PORT_EPS; // EPS for each port.
+    aPortEPS : ARRAY [*] OF DUT_VICI_PORT_EPS; // EPS for each port.
 END_VAR
 VAR
     fbNporValve : FB_ViciValve;
@@ -26,44 +26,44 @@ VAR
         io: io
      '}
     stSampleNames : ST_12ViciValveSampleNames;
-	
-	// EPS
-	{attribute 'pytmc' := '
-	pv: iEPSPORT
-	io: o
-	'}
-	iNewPort : INT;
-	{attribute 'pytmc' := '
-	pv: fbEPS
-	io: o
-	'}
-	fbViciEPS : FB_VICI_EPS;
 
-	{attribute 'pytmc' := 'pv: bOVRD_MODE'}
+    // EPS
+    {attribute 'pytmc' := '
+    pv: iEPSPORT
+    io: o
+    '}
+    iNewPort : INT;
+    {attribute 'pytmc' := '
+    pv: fbEPS
+    io: o
+    '}
+    fbViciEPS : FB_VICI_EPS;
+
+    {attribute 'pytmc' := 'pv: bOVRD_MODE'}
     bEPS_Override : BOOL := FALSE;
-	
+
     {attribute 'pytmc' := 'pv: bOVRD_COUNTDOWN'}
     tEPS_TimerCountDown : STRING := TIME_TO_STRING(T#0s);
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[iReqPos := LIMIT(1,iReqPos, iNumPorts); // KEEP EPS array index within bounds
-				
-fbViciEPS(aPortEPS := aPortEPS, 
-	iReqPort := iReqPos,
-	iPrevPort := iNewPort,
-	bOverride := bEPS_Override,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalLock,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iNewPort,
-	tEPS_TimerCountDown => tEPS_TimerCountDown);
-	
+
+fbViciEPS(aPortEPS := aPortEPS,
+    iReqPort := iReqPos,
+    iPrevPort := iNewPort,
+    bOverride := bEPS_Override,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalLock,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iNewPort,
+    tEPS_TimerCountDown => tEPS_TimerCountDown);
+
 iReqPos := iNewPort; // Updat iReqPos PV  to be the safe port, otherwise when EPS is cleared the requested port would automatically change.
 
 fbNporValve(iAddress := iAdress,
-	iNumOfPorts := iNumPorts, 
-	iReqPos := iNewPort);]]></ST>
+    iNumOfPorts := iNumPorts,
+    iReqPos := iNewPort);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

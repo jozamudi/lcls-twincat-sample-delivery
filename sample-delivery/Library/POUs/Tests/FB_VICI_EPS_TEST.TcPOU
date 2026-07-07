@@ -20,15 +20,15 @@ TestLockedPortMovesWithOverrideExpectPortToMove();]]></ST>
     <Method Name="TestActivePortBecomesLockedExpectExternalSignalSetTrue" Id="{410125a3-8cc0-4ee9-90f5-443f51d6ea3e}">
       <Declaration><![CDATA[METHOD TestActivePortBecomesLockedExpectExternalSignalSetTrue :  REFERENCE TO FB_Test
 VAR
-	aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
-	fbViciEPS : FB_VICI_EPS;
-	fbEPS : FB_EPS;
-	
-	bAllPortsLocked : BOOL;
-	bExternalSignal : BOOL;
-	iReqNewPort : INT;	
-	iNumPorts :INT := 4;
-	bOverride : BOOL := FALSE;
+    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+    fbViciEPS : FB_VICI_EPS;
+    fbEPS : FB_EPS;
+
+    bAllPortsLocked : BOOL;
+    bExternalSignal : BOOL;
+    iReqNewPort : INT;
+    iNumPorts :INT := 4;
+    bOverride : BOOL := FALSE;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -46,19 +46,19 @@ fbEPS.setBit(0, TRUE);
 fbEPS(eps:=aEPS[4].stEPS);
 fbEPS.setBit(0, TRUE);
 
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 1,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 1,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 
 AssertEquals_BOOL(
-	Expected:= FALSE ,
-	Actual:= bExternalSignal,
+    Expected:= FALSE ,
+    Actual:= bExternalSignal,
     Message:= 'bExternalSignal Should be FALSE'
 );
 
@@ -75,38 +75,38 @@ fbEPS(eps:=aEPS[4].stEPS);
 fbEPS.setBit(0, TRUE);
 
 
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 1,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 1,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 
 AssertEquals_BOOL(
-	Expected:= TRUE ,
-	Actual:= bExternalSignal,
+    Expected:= TRUE ,
+    Actual:= bExternalSignal,
     Message:= 'bExternalSignal Should be TRUE'
 );
 
 // CHECK OVERRIDE
 bOverride := TRUE;
 
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 1,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 1,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 
 AssertEquals_BOOL(
-	Expected:= FALSE ,
-	Actual:= bExternalSignal,
+    Expected:= FALSE ,
+    Actual:= bExternalSignal,
     Message:= 'bExternalSignal Should be FALSE'
 );
 
@@ -118,16 +118,16 @@ TEST_FINISHED();]]></ST>
 VAR_INPUT
 END_VAR
 VAR
-	fbViciEPS : FB_VICI_EPS;
-	aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
-	
-	fbEPS : FB_EPS;
-	
-	bAllPortsLocked : BOOL;
-	iReqNewPort : INT;	
-	iNumPorts: INT := 4;
-	bExternalSignal: BOOL;
-	bOverride : BOOL := FALSE;
+    fbViciEPS : FB_VICI_EPS;
+    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+
+    fbEPS : FB_EPS;
+
+    bAllPortsLocked : BOOL;
+    iReqNewPort : INT;
+    iNumPorts: INT := 4;
+    bExternalSignal: BOOL;
+    bOverride : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestAllPortsLockedExpectbAllPortsLockedToBeTrue');
@@ -143,18 +143,18 @@ fbEPS.setBit(0, TRUE);
 fbEPS(eps:=aEPS[4].stEPS);
 fbEPS.setBit(0, TRUE);
 
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 1,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 1,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 AssertEquals_BOOL(
-	Expected:= FALSE ,
-	Actual:= bAllPortsLocked,
+    Expected:= FALSE ,
+    Actual:= bAllPortsLocked,
     Message:= 'ALL PORTS ARE LOCKED'
 );
 
@@ -170,18 +170,18 @@ fbEPS.setBit(0, FALSE);
 fbEPS(eps:=aEPS[4].stEPS);
 fbEPS.setBit(0, FALSE);
 
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 1,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 1,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 AssertEquals_BOOL(
-	Expected:= TRUE ,
-	Actual:= bAllPortsLocked,
+    Expected:= TRUE ,
+    Actual:= bAllPortsLocked,
     Message:= 'ALL PORTS ARE NOT LOCKED'
 );
 
@@ -193,16 +193,16 @@ TEST_FINISHED();]]></ST>
 VAR_INPUT
 END_VAR
 VAR
-	fbViciEPS : FB_VICI_EPS;
-	aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
-	
-	fbEPS : FB_EPS;
-	
-	bAllPortsLocked : BOOL;
-	iReqNewPort : INT;
-	iNumPorts: INT := 4;
-	bExternalSignal: BOOL;
-	bOverride : BOOL := FALSE;
+    fbViciEPS : FB_VICI_EPS;
+    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+
+    fbEPS : FB_EPS;
+
+    bAllPortsLocked : BOOL;
+    iReqNewPort : INT;
+    iNumPorts: INT := 4;
+    bExternalSignal: BOOL;
+    bOverride : BOOL := FALSE;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -220,35 +220,35 @@ fbEPS(eps:=aEPS[4].stEPS);
 fbEPS.setBit(0, TRUE);
 
 // MAKE PORT 1 ACTIVE
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 1,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
-	
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 1,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
+
 AssertEquals_INT(
-	Expected:= ENUM_PORT_STATUS.ACTIVE ,
-	Actual:= aEPS[1].ePortStatus,
+    Expected:= ENUM_PORT_STATUS.ACTIVE ,
+    Actual:= aEPS[1].ePortStatus,
     Message:= 'PORT 1: NOT ACTIVE'
 );
 
-// MAKE PORT 1 UNLOCKED 
+// MAKE PORT 1 UNLOCKED
 
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 2,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 2,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 AssertEquals_INT(
-	Expected:= ENUM_PORT_STATUS.UNLOCKED ,
-	Actual:= aEPS[1].ePortStatus,
+    Expected:= ENUM_PORT_STATUS.UNLOCKED ,
+    Actual:= aEPS[1].ePortStatus,
     Message:= 'PORT 1: NOT IN UNLOCKED STATE'
 );
 
@@ -256,18 +256,18 @@ AssertEquals_INT(
 fbEPS(eps:=aEPS[1].stEPS);
 fbEPS.setBit(0, FALSE);
 
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 2,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 2,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 AssertEquals_INT(
-	Expected:= ENUM_PORT_STATUS.LOCKED ,
-	Actual:= aEPS[1].ePortStatus,
+    Expected:= ENUM_PORT_STATUS.LOCKED ,
+    Actual:= aEPS[1].ePortStatus,
     Message:= 'PORT 1: NOT IN LOCKED STATE'
 );
 
@@ -279,15 +279,15 @@ TEST_FINISHED();]]></ST>
 VAR_INPUT
 END_VAR
 VAR
-	fbViciEPS : FB_VICI_EPS;
-	aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
-	
-	fbEPS : FB_EPS;
-	bAllPortsLocked : BOOL;
-	iReqNewPort : INT;
-	iNumPorts : INT := 4;
-	bExternalSignal: BOOL;
-	bOverride : BOOL := FALSE;
+    fbViciEPS : FB_VICI_EPS;
+    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+
+    fbEPS : FB_EPS;
+    bAllPortsLocked : BOOL;
+    iReqNewPort : INT;
+    iNumPorts : INT := 4;
+    bExternalSignal: BOOL;
+    bOverride : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestLockedPortMovesWithOverrideExpectPortToMove');
@@ -304,36 +304,36 @@ fbEPS(eps:=aEPS[4].stEPS);
 fbEPS.setBit(0, TRUE);
 
 // REQUEST PORT 1
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 1,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 1,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 AssertEquals_INT(Expected:= 1 ,
-	Actual:= iReqNewPort,
+    Actual:= iReqNewPort,
     Message:= 'VICI EPS DID NOT MOVE TO ALLOWED PORT');
 
 // REQUEST PORT 3 w/ Override
 
 bOverride := TRUE;
 
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 3,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 3,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 AssertEquals_INT(Expected:= 3 ,
-	Actual:= iReqNewPort,
+    Actual:= iReqNewPort,
     Message:= 'VICI EPS OVERRIDE FAILED');
-	
+
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
@@ -342,14 +342,14 @@ TEST_FINISHED();]]></ST>
 VAR_INPUT
 END_VAR
 VAR
-	fbViciEPS : FB_VICI_EPS;
-	aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
-	fbEPS : FB_EPS;
-	bAllPortsLocked : BOOL;
-	iReqNewPort : INT;
-	iNumPorts : INT := 4;
-	bExternalSignal : BOOL;
-	bOverride : BOOL := FALSE;
+    fbViciEPS : FB_VICI_EPS;
+    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+    fbEPS : FB_EPS;
+    bAllPortsLocked : BOOL;
+    iReqNewPort : INT;
+    iNumPorts : INT := 4;
+    bExternalSignal : BOOL;
+    bOverride : BOOL := FALSE;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -368,34 +368,34 @@ fbEPS(eps:=aEPS[4].stEPS);
 fbEPS.setBit(0, TRUE);
 
 // REQUEST PORT 1
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 1,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 1,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 AssertEquals_INT(Expected:= 1 ,
-	Actual:= iReqNewPort,
+    Actual:= iReqNewPort,
     Message:= 'VICI EPS DID NOT MOVE TO ALLOWED PORT');
 
 // REQUEST PORT 3
-fbViciEPS(aPortEPS := aEPS, 
-	iReqPort := 3,
-	iPrevPort := iReqNewPort,
-	bOverride := bOverride,
-	iNumPorts := iNumPorts,
-	bExternalLockSignal => bExternalSignal,
-	bAllPortsLocked => bAllPortsLocked,
-	iNewPortPos => iReqNewPort);
+fbViciEPS(aPortEPS := aEPS,
+    iReqPort := 3,
+    iPrevPort := iReqNewPort,
+    bOverride := bOverride,
+    iNumPorts := iNumPorts,
+    bExternalLockSignal => bExternalSignal,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iReqNewPort);
 
 AssertEquals_INT(Expected:= 1 ,
-	Actual:= iReqNewPort,
+    Actual:= iReqNewPort,
     Message:= 'VICI EPS MOVED TO BLOCKED PORT');
-	
-	
+
+
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>

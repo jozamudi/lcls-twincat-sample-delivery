@@ -3,76 +3,76 @@
   <DUT Name="ST_12ViciValveSampleNames" Id="{3a13c3fd-2ef6-436c-b65e-9eb376830a93}">
     <Declaration><![CDATA[TYPE ST_12ViciValveSampleNames :
 STRUCT
-	{attribute 'pytmc' := '
+    {attribute 'pytmc' := '
         pv: 01
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s1 : STRING;
      {attribute 'pytmc' := '
         pv: 02
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s2 : STRING;
      {attribute 'pytmc' := '
         pv: 03
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s3 : STRING;
      {attribute 'pytmc' := '
         pv: 04
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s4 : STRING;
-	       {attribute 'pytmc' := '
+           {attribute 'pytmc' := '
         pv: 05
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s5 : STRING;
      {attribute 'pytmc' := '
         pv: 06
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s6 : STRING;
      {attribute 'pytmc' := '
         pv: 07
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s7 : STRING;
      {attribute 'pytmc' := '
         pv: 08
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s8 : STRING;
-	       {attribute 'pytmc' := '
+           {attribute 'pytmc' := '
         pv: 09
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s9 : STRING;
      {attribute 'pytmc' := '
         pv: 10
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s10 : STRING;
      {attribute 'pytmc' := '
         pv: 11
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s11 : STRING;
      {attribute 'pytmc' := '
         pv: 12
         io: io
-		autosave_pass0: VAL DESC
+        autosave_pass0: VAL DESC
      '}
      s12 : STRING;
 END_STRUCT
