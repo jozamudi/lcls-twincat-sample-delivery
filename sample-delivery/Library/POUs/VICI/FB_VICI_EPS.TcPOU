@@ -13,7 +13,7 @@ VAR_IN_OUT
 END_VAR
 VAR_OUTPUT
     bAllPortsLocked : BOOL;
-    bExternalLockSignal : BOOL;
+    bExternalLockSignal : BOOL; // Signals if previously active port becomes locked.
     iNewPortPos : INT;
     tEPS_TimerCountDown : STRING;
 END_VAR
@@ -44,11 +44,12 @@ END_FOR
 iNewPortPos := iPrevPort;
 IF aPortEPS[iReqPort].stEPS.bEPS_OK OR bOverride THEN
     iNewPortPos := iReqPort;
+	aPortEPS[iReqPort].ePortStatus := ENUM_PORT_STATUS.ACTIVE;
 END_IF
 
-IF aPortEPS[iPrevPort].ePortStatus = ENUM_PORT_STATUS.LOCKED AND NOT bOverride THEN
+IF (iReqPort = iPrevPort) AND (aPortEPS[iPrevPort].ePortStatus = ENUM_PORT_STATUS.LOCKED) AND NOT bOverride THEN
     bExternalLockSignal := TRUE;
-ELSIF aPortEPS[iPrevPort].ePortStatus <> ENUM_PORT_STATUS.LOCKED OR bOverride THEN
+ELSIF  (iReqPort = iPrevPort) AND (aPortEPS[iPrevPort].ePortStatus <> ENUM_PORT_STATUS.LOCKED) OR bOverride THEN
     bExternalLockSignal := FALSE;
 END_IF
 
@@ -60,7 +61,6 @@ END_IF
 
 M_RESET_EPS_TIMER();
 
-aPortEPS[iPrevPort].ePortStatus := ENUM_PORT_STATUS.ACTIVE;
 iIndex := 1;
 iEPS_NOT_OK_COUNT := 0;
 

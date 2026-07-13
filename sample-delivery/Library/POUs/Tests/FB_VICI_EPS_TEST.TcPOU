@@ -199,7 +199,7 @@ VAR
     fbEPS : FB_EPS;
 
     bAllPortsLocked : BOOL;
-    iReqNewPort : INT;
+    iReqNewPort : INT := 1;
     iNumPorts: INT := 4;
     bExternalSignal: BOOL;
     bOverride : BOOL := FALSE;
