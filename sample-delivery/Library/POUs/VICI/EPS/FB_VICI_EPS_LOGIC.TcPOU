@@ -27,7 +27,9 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// Evaluate all EPS
+      <ST><![CDATA[M_RESET_EPS_TIMER();
+
+// Evaluate all EPS
 FOR iIndex := 1 TO iNumPorts BY 1 DO
 
     fbEPS(eps := aPortEPS[iIndex].stEPS);
@@ -58,8 +60,6 @@ IF iEPS_NOT_OK_COUNT = iNumPorts AND NOT bOverride THEN
 ELSE
     bAllPortsLocked := FALSE;
 END_IF
-
-M_RESET_EPS_TIMER();
 
 iIndex := 1;
 iEPS_NOT_OK_COUNT := 0;
