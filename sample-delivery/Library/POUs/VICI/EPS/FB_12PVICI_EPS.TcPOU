@@ -13,6 +13,10 @@ VAR_IN_OUT
     aPortEPS : ARRAY [*] OF E_VICI_PORT_EPS; // EPS for each port.
 END_VAR
 VAR
+	{attribute 'pytmc' := '
+        pv: ''
+        io: io
+    '}
     fbNporValveEPS : FB_ViciValveEPS;
     iNumPorts : INT := 12;
 
