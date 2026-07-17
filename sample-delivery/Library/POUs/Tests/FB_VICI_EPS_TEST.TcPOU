@@ -20,8 +20,8 @@ TestLockedPortMovesWithOverrideExpectPortToMove();]]></ST>
     <Method Name="TestActivePortBecomesLockedExpectExternalSignalSetTrue" Id="{410125a3-8cc0-4ee9-90f5-443f51d6ea3e}">
       <Declaration><![CDATA[METHOD TestActivePortBecomesLockedExpectExternalSignalSetTrue :  REFERENCE TO FB_Test
 VAR
-    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
-    fbViciEPS : FB_VICI_EPS;
+    aEPS : ARRAY[1..4] OF E_VICI_PORT_EPS;
+    fbViciEPS : FB_VICI_EPS_LOGIC;
     fbEPS : FB_EPS;
 
     bAllPortsLocked : BOOL;
@@ -118,8 +118,8 @@ TEST_FINISHED();]]></ST>
 VAR_INPUT
 END_VAR
 VAR
-    fbViciEPS : FB_VICI_EPS;
-    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+    fbViciEPS : FB_VICI_EPS_LOGIC;
+    aEPS : ARRAY[1..4] OF E_VICI_PORT_EPS;
 
     fbEPS : FB_EPS;
 
@@ -193,8 +193,8 @@ TEST_FINISHED();]]></ST>
 VAR_INPUT
 END_VAR
 VAR
-    fbViciEPS : FB_VICI_EPS;
-    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+    fbViciEPS : FB_VICI_EPS_LOGIC;
+    aEPS : ARRAY[1..4] OF E_VICI_PORT_EPS;
 
     fbEPS : FB_EPS;
 
@@ -230,7 +230,7 @@ fbViciEPS(aPortEPS := aEPS,
     iNewPortPos => iReqNewPort);
 
 AssertEquals_INT(
-    Expected:= ENUM_PORT_STATUS.ACTIVE ,
+    Expected:= E_VICI_EPS_PORT_STATUS.ACTIVE ,
     Actual:= aEPS[1].ePortStatus,
     Message:= 'PORT 1: NOT ACTIVE'
 );
@@ -247,7 +247,7 @@ fbViciEPS(aPortEPS := aEPS,
     iNewPortPos => iReqNewPort);
 
 AssertEquals_INT(
-    Expected:= ENUM_PORT_STATUS.UNLOCKED ,
+    Expected:= E_VICI_EPS_PORT_STATUS.UNLOCKED ,
     Actual:= aEPS[1].ePortStatus,
     Message:= 'PORT 1: NOT IN UNLOCKED STATE'
 );
@@ -266,7 +266,7 @@ fbViciEPS(aPortEPS := aEPS,
     iNewPortPos => iReqNewPort);
 
 AssertEquals_INT(
-    Expected:= ENUM_PORT_STATUS.LOCKED ,
+    Expected:= E_VICI_EPS_PORT_STATUS.LOCKED ,
     Actual:= aEPS[1].ePortStatus,
     Message:= 'PORT 1: NOT IN LOCKED STATE'
 );
@@ -279,8 +279,8 @@ TEST_FINISHED();]]></ST>
 VAR_INPUT
 END_VAR
 VAR
-    fbViciEPS : FB_VICI_EPS;
-    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+    fbViciEPS : FB_VICI_EPS_LOGIC;
+    aEPS : ARRAY[1..4] OF E_VICI_PORT_EPS;
 
     fbEPS : FB_EPS;
     bAllPortsLocked : BOOL;
@@ -342,8 +342,8 @@ TEST_FINISHED();]]></ST>
 VAR_INPUT
 END_VAR
 VAR
-    fbViciEPS : FB_VICI_EPS;
-    aEPS : ARRAY[1..4] OF DUT_VICI_PORT_EPS;
+    fbViciEPS : FB_VICI_EPS_LOGIC;
+    aEPS : ARRAY[1..4] OF E_VICI_PORT_EPS;
     fbEPS : FB_EPS;
     bAllPortsLocked : BOOL;
     iReqNewPort : INT;

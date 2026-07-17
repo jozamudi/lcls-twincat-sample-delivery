@@ -33,6 +33,7 @@
     <Folder Include="DUTs\Vici\EPS" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\RCC" />
+    <Folder Include="POUs\VICI\EPS" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
     <Folder Include="POUs\ALI" />
@@ -149,10 +150,10 @@
     <Compile Include="DUTs\TEC\ST_TECStatus.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Vici\EPS\DUT_VICI_PORT_EPS.TcDUT">
+    <Compile Include="DUTs\Vici\EPS\E_VICI_PORT_EPS.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\Vici\EPS\ENUM_PORT_STATUS.TcDUT">
+    <Compile Include="DUTs\Vici\EPS\E_VICI_EPS_PORT_STATUS.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\Vici\ST_12ViciValveSampleNames.TcDUT">
@@ -278,16 +279,22 @@
     <Compile Include="POUs\Tests\FB_VICI_EPS_TEST.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\VICI\EPS\FB_12PVICI_EPS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\VICI\EPS\FB_4PVICI_EPS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\VICI\EPS\FB_ViciValveEPS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\VICI\EPS\FB_VICI_EPS_LOGIC.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\VICI\FB_12PortVici.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\VICI\FB_12PVICI_EPS.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\VICI\FB_4PortViciValve.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\VICI\FB_4PVICI_EPS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\VICI\FB_ViciDriver.TcPOU">
@@ -297,9 +304,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\VICI\FB_ViciValve.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\VICI\FB_VICI_EPS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

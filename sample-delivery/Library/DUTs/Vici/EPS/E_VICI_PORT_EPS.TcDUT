@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <DUT Name="DUT_VICI_PORT_EPS" Id="{19162ed9-f19d-40bd-9a8a-0b945315ca9a}">
-    <Declaration><![CDATA[TYPE DUT_VICI_PORT_EPS :
+  <DUT Name="E_VICI_PORT_EPS" Id="{19162ed9-f19d-40bd-9a8a-0b945315ca9a}">
+    <Declaration><![CDATA[TYPE E_VICI_PORT_EPS :
 STRUCT
     {attribute 'pytmc' := 'pv: stEPS'}
     stEPS : DUT_EPS;
     {attribute 'pytmc' := 'pv: ePortStatus'}
-    ePortStatus : ENUM_PORT_STATUS;
+    ePortStatus : E_VICI_EPS_PORT_STATUS;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
