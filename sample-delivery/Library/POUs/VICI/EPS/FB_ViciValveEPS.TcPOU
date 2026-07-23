@@ -3,24 +3,24 @@
   <POU Name="FB_ViciValveEPS" Id="{bc7ef07e-b156-4d0d-9141-185cefafbb6f}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ViciValveEPS
 VAR_INPUT
-	iAddress : INT;
+    iAddress : INT;
     iNumOfPorts : INT;
 END_VAR
 VAR_IN_OUT
     aPortEPS : ARRAY [*] OF E_VICI_PORT_EPS; // EPS for each port.
 END_VAR
 VAR_OUTPUT
-	bAllPortsLocked : BOOL;
+    bAllPortsLocked : BOOL;
     bExternalLock : BOOL;
 END_VAR
 VAR
-	{attribute 'pytmc' := '
+    {attribute 'pytmc' := '
         pv: iReqPos
         io: io
      '}
     iReqPos : INT;
-	
-	{attribute 'pytmc' := '
+
+    {attribute 'pytmc' := '
     pv: PORT
     io: o
     '}
@@ -36,8 +36,8 @@ VAR
 
     {attribute 'pytmc' := 'pv: OVRD_COUNTDOWN'}
     tEPS_TimerCountDown : STRING := TIME_TO_STRING(T#0s);
-	
-	fbNporValve : FB_ViciValve;
+
+    fbNporValve : FB_ViciValve;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -52,7 +52,7 @@ fbViciEPS(aPortEPS := aPortEPS,
     bAllPortsLocked => bAllPortsLocked,
     iNewPortPos => iNewPortPos,
     tEPS_TimerCountDown => tEPS_TimerCountDown);
-	
+
 iReqPos := iNewPortPos; // Update iReqPos PV  to be the safe port, otherwise when EPS is cleared the requested port would automatically change.
 
 fbNporValve(iAddress := iAddress,

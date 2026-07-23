@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_4PVICI_EPS" Id="{89dd5800-3edc-4db3-a7b8-40f2bc027efe}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_4PVICI_EPS 
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_4PVICI_EPS
 VAR_INPUT
     iAddress : INT;
 END_VAR
@@ -13,8 +13,8 @@ VAR_IN_OUT
     aPortEPS : ARRAY [*] OF E_VICI_PORT_EPS; // EPS for each port.
 END_VAR
 VAR
-	
-	{attribute 'pytmc' := '
+
+    {attribute 'pytmc' := '
         pv: ''
         io: io
     '}
@@ -25,16 +25,16 @@ VAR
         pv: SampleNames
         io: io
      '}
-    stSampleNames : ST_4PViciValveSampleNames;	
+    stSampleNames : ST_4PViciValveSampleNames;
 
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbNporValveEPS(iAddress := iAddress,
     iNumOfPorts := iNumPorts,
-	aPortEPS := aPortEPS,
-	bAllPortsLocked => bAllPortsLocked,
-	bExternalLock => bExternalLock);]]></ST>
+    aPortEPS := aPortEPS,
+    bAllPortsLocked => bAllPortsLocked,
+    bExternalLock => bExternalLock);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

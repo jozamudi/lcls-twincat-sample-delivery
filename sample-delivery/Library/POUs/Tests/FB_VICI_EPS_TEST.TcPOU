@@ -11,7 +11,7 @@ VAR
 // TestEnableOverrideExpectOverrideToAutoRestAfterTimerExpires FBs
 // These Fbs need to be defined outside of Test for Timers To Function Correcly.
 
-	fbViciEPS : FB_VICI_EPS_LOGIC;
+    fbViciEPS : FB_VICI_EPS_LOGIC;
     aEPS : ARRAY[1..4] OF E_VICI_PORT_EPS;
     fbEPS : FB_EPS;
     bAllPortsLocked : BOOL;
@@ -19,10 +19,10 @@ VAR
     iNumPorts: INT := 4;
     bExternalSignal: BOOL;
     bOverride : BOOL := FALSE;
-	fbTestTimer : TON;
-	bTestInit : BOOL := TRUE;
-	
-	
+    fbTestTimer : TON;
+    bTestInit : BOOL := TRUE;
+
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -214,29 +214,29 @@ END_VAR
         <ST><![CDATA[TEST('TestEnableOverrideExpectOverrideToAutoRestAfterTimerExpires');
 
 IF bTestInit THEN
-	fbEPS(eps:=aEPS[1].stEPS);
-	fbEPS.setBit(0, FALSE);
+    fbEPS(eps:=aEPS[1].stEPS);
+    fbEPS.setBit(0, FALSE);
 
-	fbEPS(eps:=aEPS[2].stEPS);
-	fbEPS.setBit(0, FALSE);
+    fbEPS(eps:=aEPS[2].stEPS);
+    fbEPS.setBit(0, FALSE);
 
-	fbEPS(eps:=aEPS[3].stEPS);
-	fbEPS.setBit(0, FALSE);
+    fbEPS(eps:=aEPS[3].stEPS);
+    fbEPS.setBit(0, FALSE);
 
-	fbEPS(eps:=aEPS[4].stEPS);
-	fbEPS.setBit(0, TRUE);	
-	
-	fbViciEPS.M_SET_OVERRIDE_RESET_TIME(tNewTime:=T#100ms);
-	fbTestTimer.PT := T#500ms;
-	fbTestTimer.IN := TRUE;
-	
-	// Enable Override
-	bOverride := TRUE;
-	
-	// Move To Locked Port
-	iReqNewPort := 1;
-	
-	fbViciEPS(aPortEPS := aEPS,
+    fbEPS(eps:=aEPS[4].stEPS);
+    fbEPS.setBit(0, TRUE);
+
+    fbViciEPS.M_SET_OVERRIDE_RESET_TIME(tNewTime:=T#100ms);
+    fbTestTimer.PT := T#500ms;
+    fbTestTimer.IN := TRUE;
+
+    // Enable Override
+    bOverride := TRUE;
+
+    // Move To Locked Port
+    iReqNewPort := 1;
+
+    fbViciEPS(aPortEPS := aEPS,
     iReqPort := iReqNewPort,
     iPrevPort := iReqNewPort,
     bOverride := bOverride,
@@ -244,15 +244,15 @@ IF bTestInit THEN
     bExternalLockSignal => bExternalSignal,
     bAllPortsLocked => bAllPortsLocked,
     iNewPortPos => iReqNewPort);
-	
-	AssertEquals_INT(
+
+    AssertEquals_INT(
     Expected:= E_VICI_EPS_PORT_STATUS.ACTIVE ,
     Actual:= aEPS[1].ePortStatus,
     Message:= 'PORT 1: NOT ACTIVE'
-	);
-	
-	bTestInit := FALSE;
-	
+    );
+
+    bTestInit := FALSE;
+
 END_IF
 
 fbViciEPS(aPortEPS := aEPS,
@@ -265,17 +265,17 @@ fbViciEPS(aPortEPS := aEPS,
     iNewPortPos => iReqNewPort);
 
 IF  NOT bOverride OR fbTestTimer.Q THEN
-	
-	// Test if bOverride Reset.
-	AssertEquals_BOOL(
+
+    // Test if bOverride Reset.
+    AssertEquals_BOOL(
     Expected:= FALSE ,
     Actual:= bOverride,
-    Message:= 'bOverride was Not Reset');	
+    Message:= 'bOverride was Not Reset');
 
-	// TRY Blocked Move after override reset.
-	iReqNewPort := 1;	
-	
-	fbViciEPS(aPortEPS := aEPS,
+    // TRY Blocked Move after override reset.
+    iReqNewPort := 1;
+
+    fbViciEPS(aPortEPS := aEPS,
     iReqPort := iReqNewPort,
     iPrevPort := iReqNewPort,
     bOverride := bOverride,
@@ -283,14 +283,14 @@ IF  NOT bOverride OR fbTestTimer.Q THEN
     bExternalLockSignal => bExternalSignal,
     bAllPortsLocked => bAllPortsLocked,
     iNewPortPos => iReqNewPort);
-	
-	AssertEquals_INT(
+
+    AssertEquals_INT(
     Expected:= E_VICI_EPS_PORT_STATUS.LOCKED ,
     Actual:= aEPS[1].ePortStatus,
     Message:= 'PORT 1: IS ACTIVE'
-	);
-	
-	TEST_FINISHED();
+    );
+
+    TEST_FINISHED();
 END_IF
 ]]></ST>
       </Implementation>
@@ -395,9 +395,9 @@ VAR
     iNumPorts : INT := 4;
     bExternalSignal: BOOL;
     bOverride : BOOL := FALSE;
-	
-	fbTestTimer : TON;
-	iCount : INT := 0;
+
+    fbTestTimer : TON;
+    iCount : INT := 0;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestLockedPortMovesWithOverrideExpectPortToMove');
