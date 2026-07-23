@@ -20,7 +20,7 @@ VAR
         pv: SampleNames
         io: io
      '}
-    stSampleNames : ST_12PortSampleNames;
+    stSampleNames : ST_12ViciValveSampleNames;
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -84,5 +84,15 @@ IF fbTimer.Q THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="M_SET_OVERRIDE_RESET_TIME" Id="{0876c948-a096-48aa-a92d-6ef9e6793d6f}">
+      <Declaration><![CDATA[METHOD M_SET_OVERRIDE_RESET_TIME : BOOL
+VAR_INPUT
+	tNewTime : TIME;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[tEPS_OVRD_RESET_TIME := tNewTime;]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>
