@@ -22,6 +22,10 @@ VAR
     fbTestTimer : TON;
     bTestInit : BOOL := TRUE;
 
+	aEPS_4 : ARRAY[1..4] OF E_VICI_PORT_EPS;
+	fb4PortViciEps : FB_4PVICI_EPS;
+	aEPS_12 : ARRAY[1..12] OF E_VICI_PORT_EPS;
+	fb12PortViciEps : FB_12PVICI_EPS;
 
 END_VAR
 ]]></Declaration>
@@ -32,7 +36,10 @@ TestAllPortsLockedExpectbAllPortsLockedToBeTrue();
 TestEpsPortStatusChangeExpectPortStatusToChange();
 TestLockedPortMovesWithOverrideExpectPortToMove();
 TestEnableOverrideExpectOverrideToAutoRestAfterTimerExpires();
-]]></ST>
+
+
+fb4PortViciEps(iAddress:=1, aPortEPS:=aEPS_4);
+fb12PortViciEps(iAddress:=1, aPortEPS:=aEPS_12);]]></ST>
     </Implementation>
     <Method Name="TestActivePortBecomesLockedExpectExternalSignalSetTrue" Id="{410125a3-8cc0-4ee9-90f5-443f51d6ea3e}">
       <Declaration><![CDATA[METHOD TestActivePortBecomesLockedExpectExternalSignalSetTrue :  REFERENCE TO FB_Test
@@ -271,6 +278,11 @@ IF  NOT bOverride OR fbTestTimer.Q THEN
     Expected:= FALSE ,
     Actual:= bOverride,
     Message:= 'bOverride was Not Reset');
+	
+	AssertEquals_BOOL(
+    Expected:= FALSE ,
+    Actual:= fbTestTimer.Q,
+    Message:= 'TIMEOUT REACHED.');
 
     // TRY Blocked Move after override reset.
     iReqNewPort := 1;
