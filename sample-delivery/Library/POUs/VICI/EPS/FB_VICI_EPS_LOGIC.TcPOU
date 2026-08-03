@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_VICI_EPS_LOGIC" Id="{79a477eb-cca3-419f-8b1e-8d6d23651e0e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_VICI_EPS_LOGIC
+VAR_INPUT
+    iReqPort : INT;
+    iPrevPort : INT;
+    iNumPorts : INT;
+END_VAR
+VAR_IN_OUT
+    aPortEPS : ARRAY [*] OF E_VICI_PORT_EPS; // EPS for each port.
+    bOverride : BOOL;
+END_VAR
+VAR_OUTPUT
+    bAllPortsLocked : BOOL;
+    bExternalLockSignal : BOOL; // Signals if previously active port becomes locked.
+    iNewPortPos : INT;
+    tEPS_TimerCountDown : STRING;
+END_VAR
+VAR
+    fbTimer : TON;
+    tEPS_OVRD_RESET_TIME : TIME := T#1m;
+    fbEPS : FB_EPS;
+    iIndex : INT := 1;
+    iEPS_NOT_OK_COUNT : INT;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[M_RESET_EPS_TIMER();
+
+// Evaluate all EPS
+FOR iIndex := 1 TO iNumPorts BY 1 DO
+
+    fbEPS(eps := aPortEPS[iIndex].stEPS);
+
+    IF aPortEPS[iIndex].stEPS.bEPS_OK THEN
+        aPortEPS[iIndex].ePortStatus := E_VICI_EPS_PORT_STATUS.UNLOCKED;
+    ELSE
+        aPortEPS[iIndex].ePortStatus := E_VICI_EPS_PORT_STATUS.LOCKED;
+        iEPS_NOT_OK_COUNT := iEPS_NOT_OK_COUNT + 1;
+    END_IF
+
+END_FOR
+
+iNewPortPos := iPrevPort;
+IF aPortEPS[iReqPort].stEPS.bEPS_OK OR bOverride THEN
+    iNewPortPos := iReqPort;
+    aPortEPS[iReqPort].ePortStatus := E_VICI_EPS_PORT_STATUS.ACTIVE;
+END_IF
+
+IF (iReqPort = iPrevPort) AND (aPortEPS[iPrevPort].ePortStatus = E_VICI_EPS_PORT_STATUS.LOCKED) AND NOT bOverride THEN
+    bExternalLockSignal := TRUE;
+ELSIF  (iReqPort = iPrevPort) AND (aPortEPS[iPrevPort].ePortStatus <> E_VICI_EPS_PORT_STATUS.LOCKED) OR bOverride THEN
+    bExternalLockSignal := FALSE;
+END_IF
+
+IF iEPS_NOT_OK_COUNT = iNumPorts AND NOT bOverride THEN
+    bAllPortsLocked := TRUE;
+ELSE
+    bAllPortsLocked := FALSE;
+END_IF
+
+iIndex := 1;
+iEPS_NOT_OK_COUNT := 0;
+
+]]></ST>
+    </Implementation>
+    <Method Name="M_RESET_EPS_TIMER" Id="{753f5f4a-0a99-4c0c-9d78-aa519bd706dc}">
+      <Declaration><![CDATA[METHOD M_RESET_EPS_TIMER : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbTimer(IN := bOverride, PT:= tEPS_OVRD_RESET_TIME);
+
+IF bOverride THEN
+    tEPS_TimerCountDown := TIME_TO_STRING(tEPS_OVRD_RESET_TIME - fbTimer.ET);
+END_IF
+
+IF fbTimer.Q THEN
+    bOverride := FALSE;
+    tEPS_TimerCountDown := TIME_TO_STRING(T#0s);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_SET_OVERRIDE_RESET_TIME" Id="{0876c948-a096-48aa-a92d-6ef9e6793d6f}">
+      <Declaration><![CDATA[METHOD M_SET_OVERRIDE_RESET_TIME : BOOL
+VAR_INPUT
+    tNewTime : TIME;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[tEPS_OVRD_RESET_TIME := tNewTime;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

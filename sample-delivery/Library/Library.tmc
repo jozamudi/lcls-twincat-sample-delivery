@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{33F8EDDF-ED76-8786-BDBE-F6926ECAEF40}" GeneratedBy="TwinCAT XAE Plc">
+<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{DDD0F84E-9E4E-2BBC-DFA9-841C3B3129E3}" GeneratedBy="TwinCAT XAE Plc">
   <DataTypes>
     <DataType>
       <Name Namespace="LCLS_General">ST_System</Name>
@@ -181,31 +181,31 @@
         <Name>bBusy</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
-        <GetCodeOffs>83451600</GetCodeOffs>
+        <GetCodeOffs>87649240</GetCodeOffs>
       </PropertyItem>
       <PropertyItem>
         <Name>bError</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
-        <GetCodeOffs>83451672</GetCodeOffs>
+        <GetCodeOffs>87649312</GetCodeOffs>
       </PropertyItem>
       <PropertyItem>
         <Name>hrErrorCode</Name>
         <Type GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</Type>
         <BitSize>32</BitSize>
-        <GetCodeOffs>83451688</GetCodeOffs>
+        <GetCodeOffs>87649328</GetCodeOffs>
       </PropertyItem>
       <PropertyItem>
         <Name>nStringSize</Name>
         <Type>UDINT</Type>
         <BitSize>32</BitSize>
-        <GetCodeOffs>83451648</GetCodeOffs>
+        <GetCodeOffs>87649288</GetCodeOffs>
       </PropertyItem>
       <PropertyItem>
         <Name>sResult</Name>
         <Type>STRING(255)</Type>
         <BitSize>2048</BitSize>
-        <GetCodeOffs>83451680</GetCodeOffs>
+        <GetCodeOffs>87649320</GetCodeOffs>
         <Properties>
           <Property>
             <Name>TcEncoding</Name>
@@ -1488,15 +1488,15 @@
         <Name>nId</Name>
         <Type>UDINT</Type>
         <BitSize>32</BitSize>
-        <GetCodeOffs>83451472</GetCodeOffs>
-        <SetCodeOffs>83451520</SetCodeOffs>
+        <GetCodeOffs>87649112</GetCodeOffs>
+        <SetCodeOffs>87649160</SetCodeOffs>
       </PropertyItem>
       <PropertyItem>
         <Name>sName</Name>
         <Type>STRING(255)</Type>
         <BitSize>2048</BitSize>
-        <GetCodeOffs>83451552</GetCodeOffs>
-        <SetCodeOffs>83451576</SetCodeOffs>
+        <GetCodeOffs>87649192</GetCodeOffs>
+        <SetCodeOffs>87649216</SetCodeOffs>
         <Properties>
           <Property>
             <Name>TcEncoding</Name>
@@ -1737,31 +1737,31 @@
         <Name>eSeverity</Name>
         <Type GUID="{B57D3F4A-0836-49B0-81C3-BED5F4817EC9}">TcEventSeverity</Type>
         <BitSize>16</BitSize>
-        <GetCodeOffs>83451784</GetCodeOffs>
+        <GetCodeOffs>87649424</GetCodeOffs>
       </PropertyItem>
       <PropertyItem>
         <Name>ipSourceInfo</Name>
         <Type Namespace="LCLS_General.Tc3_EventLogger">I_TcSourceInfo</Type>
         <BitSize>64</BitSize>
-        <GetCodeOffs>83451744</GetCodeOffs>
+        <GetCodeOffs>87649384</GetCodeOffs>
       </PropertyItem>
       <PropertyItem>
         <Name>nEventId</Name>
         <Type>UDINT</Type>
         <BitSize>32</BitSize>
-        <GetCodeOffs>83451920</GetCodeOffs>
+        <GetCodeOffs>87649560</GetCodeOffs>
       </PropertyItem>
       <PropertyItem>
         <Name>nUniqueId</Name>
         <Type>UDINT</Type>
         <BitSize>32</BitSize>
-        <GetCodeOffs>83451928</GetCodeOffs>
+        <GetCodeOffs>87649568</GetCodeOffs>
       </PropertyItem>
       <PropertyItem>
         <Name>sEventClassName</Name>
         <Type>STRING(255)</Type>
         <BitSize>2048</BitSize>
-        <GetCodeOffs>83451840</GetCodeOffs>
+        <GetCodeOffs>87649480</GetCodeOffs>
         <Properties>
           <Property>
             <Name>TcEncoding</Name>
@@ -1773,7 +1773,7 @@
         <Name>sEventText</Name>
         <Type>STRING(255)</Type>
         <BitSize>2048</BitSize>
-        <GetCodeOffs>83451936</GetCodeOffs>
+        <GetCodeOffs>87649576</GetCodeOffs>
         <Properties>
           <Property>
             <Name>TcEncoding</Name>
@@ -2366,7 +2366,7 @@
         <Name>nTimeSent</Name>
         <Type>ULINT</Type>
         <BitSize>64</BitSize>
-        <GetCodeOffs>83451992</GetCodeOffs>
+        <GetCodeOffs>87649632</GetCodeOffs>
         <Properties>
           <Property>
             <Name>TcDisplayTypeGUID</Name>
@@ -16107,6 +16107,7 @@ In case VRC is normally open</Comment>
             <Value>
         pv: Tinterval
         io: io
+        autosave_pass0: VAL DESC
     </Value>
           </Property>
         </Properties>
@@ -16125,6 +16126,7 @@ In case VRC is normally open</Comment>
             <Value>
         pv: T1
         io: io
+        autosave_pass0: VAL DESC
     </Value>
           </Property>
         </Properties>
@@ -16143,6 +16145,7 @@ In case VRC is normally open</Comment>
             <Value>
         pv: T2
         io: io
+        autosave_pass0: VAL DESC
     </Value>
           </Property>
         </Properties>
@@ -16161,6 +16164,7 @@ In case VRC is normally open</Comment>
             <Value>
         pv: T3
         io: io
+        autosave_pass0: VAL DESC
     </Value>
           </Property>
         </Properties>
@@ -16179,6 +16183,7 @@ In case VRC is normally open</Comment>
             <Value>
         pv: T4
         io: io
+        autosave_pass0: VAL DESC
     </Value>
           </Property>
         </Properties>
@@ -16269,7 +16274,10 @@ In case VRC is normally open</Comment>
         <Properties>
           <Property>
             <Name>pytmc</Name>
-            <Value> pv: ILK_Setpoint </Value>
+            <Value>
+        pv: ILK_Setpoint
+        autosave_pass0: VAL DESC
+     </Value>
           </Property>
         </Properties>
       </SubItem>
@@ -17111,6 +17119,759 @@ In case VRC is normally open</Comment>
       </Properties>
     </DataType>
     <DataType>
+      <Name Namespace="LCLS_General">DUT_EPS</Name>
+      <BitSize>1344</BitSize>
+      <SubItem>
+        <Name>nFlags</Name>
+        <Type>UDINT</Type>
+        <Comment> Contains EPS flags</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>0</BitOffs>
+        <Default>
+          <Value>4294967295</Value>
+        </Default>
+        <Properties>
+          <Property>
+            <Name>pytmc</Name>
+            <Value>
+        pv: nFlags
+        io: i
+        field: DESC Contains EPS flags
+    </Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>sFlagDesc</Name>
+        <Type>STRING(80)</Type>
+        <Comment> Desciption of values nFlags contains</Comment>
+        <BitSize>648</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>pytmc</Name>
+            <Value>
+        pv: sFlagDesc
+        io: i
+        field: DESC semicolon-delimited nFlag variable
+    </Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>sMessage</Name>
+        <Type>STRING(80)</Type>
+        <Comment> Name to use for log messages.</Comment>
+        <BitSize>648</BitSize>
+        <BitOffs>680</BitOffs>
+        <Properties>
+          <Property>
+            <Name>pytmc</Name>
+            <Value>
+        pv: sMessage
+        io: i
+        field: DESC Message from EPS to usr
+    </Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bEPS_OK</Name>
+        <Type>BOOL</Type>
+        <Comment> Keep Track if nFlags are all true</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>1328</BitOffs>
+        <Default>
+          <Bool>true</Bool>
+        </Default>
+        <Properties>
+          <Property>
+            <Name>pytmc</Name>
+            <Value>
+        pv: bEPS_OK
+        io: i
+        field: DESC check if nFlags are all true
+    </Value>
+          </Property>
+        </Properties>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name>E_VICI_EPS_PORT_STATUS</Name>
+      <BitSize>16</BitSize>
+      <BaseType>INT</BaseType>
+      <EnumInfo>
+        <Text>ACTIVE</Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>UNLOCKED</Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>LOCKED</Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <Properties>
+        <Property>
+          <Name>qualified_only</Name>
+        </Property>
+        <Property>
+          <Name>strict</Name>
+        </Property>
+        <Property>
+          <Name>generate_implicit_init_function</Name>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name>E_VICI_PORT_EPS</Name>
+      <BitSize>1376</BitSize>
+      <SubItem>
+        <Name>stEPS</Name>
+        <Type Namespace="LCLS_General">DUT_EPS</Type>
+        <BitSize>1344</BitSize>
+        <BitOffs>0</BitOffs>
+        <Properties>
+          <Property>
+            <Name>pytmc</Name>
+            <Value>pv: stEPS</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>ePortStatus</Name>
+        <Type>E_VICI_EPS_PORT_STATUS</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>1344</BitOffs>
+        <Properties>
+          <Property>
+            <Name>pytmc</Name>
+            <Value>pv: ePortStatus</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General">FB_EPS</Name>
+      <BitSize>128</BitSize>
+      <SubItem>
+        <Name>eps</Name>
+        <Type Namespace="LCLS_General" ReferenceTo="true">DUT_EPS</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>64</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>InOut</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <Method>
+        <Name>setBit</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>nBits</Name>
+          <Type>BYTE</Type>
+          <BitSize>8</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>bValue</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Parameter>
+        <Local>
+          <Name>nMask</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Local>
+          <Name>nBitValue</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+      </Method>
+      <Method>
+        <Name>setMessage</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>message</Name>
+          <Type>STRING(80)</Type>
+          <BitSize>648</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>setDescription</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>desciption</Name>
+          <Type>STRING(80)</Type>
+          <BitSize>648</BitSize>
+        </Parameter>
+      </Method>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name>FB_VICI_EPS_LOGIC</Name>
+      <BitSize>1536</BitSize>
+      <SubItem>
+        <Name>iReqPort</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>64</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>iPrevPort</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>80</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>iNumPorts</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>96</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>aPortEPS</Name>
+        <Type PointerTo="1">E_VICI_PORT_EPS</Type>
+        <Comment> EPS for each port.</Comment>
+        <BitSize>64</BitSize>
+        <BitOffs>128</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+          <Property>
+            <Name>variable_length_array</Name>
+          </Property>
+          <Property>
+            <Name>Dimensions</Name>
+            <Value>1</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bOverride</Name>
+        <Type ReferenceTo="true">BOOL</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>192</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>InOut</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bAllPortsLocked</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>256</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bExternalLockSignal</Name>
+        <Type>BOOL</Type>
+        <Comment> Signals if previously active port becomes locked.</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>264</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>iNewPortPos</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>272</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>tEPS_TimerCountDown</Name>
+        <Type>STRING(80)</Type>
+        <BitSize>648</BitSize>
+        <BitOffs>288</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>fbTimer</Name>
+        <Type Namespace="Tc2_Standard">TON</Type>
+        <BitSize>256</BitSize>
+        <BitOffs>960</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>tEPS_OVRD_RESET_TIME</Name>
+        <Type>TIME</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>1216</BitOffs>
+        <Default>
+          <DateTime>T#1m</DateTime>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>fbEPS</Name>
+        <Type Namespace="LCLS_General">FB_EPS</Type>
+        <BitSize>128</BitSize>
+        <BitOffs>1280</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>iIndex</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>1408</BitOffs>
+        <Default>
+          <Value>1</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>iEPS_NOT_OK_COUNT</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>1424</BitOffs>
+      </SubItem>
+      <Method>
+        <Name>M_RESET_EPS_TIMER</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+      </Method>
+      <Method>
+        <Name>M_SET_OVERRIDE_RESET_TIME</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>tNewTime</Name>
+          <Type>TIME</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name>FB_VICI_EPS_TEST</Name>
+      <BitSize>33569536</BitSize>
+      <ExtendsType Namespace="TcUnit">FB_TestSuite</ExtendsType>
+      <SubItem>
+        <Name>fbViciEPS</Name>
+        <Type>FB_VICI_EPS_LOGIC</Type>
+        <Comment> TestEnableOverrideExpectOverrideToAutoRestAfterTimerExpires FBs
+ These Fbs need to be defined outside of Test for Timers To Function.</Comment>
+        <BitSize>1536</BitSize>
+        <BitOffs>33561984</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>aEPS</Name>
+        <Type>E_VICI_PORT_EPS</Type>
+        <ArrayInfo>
+          <LBound>1</LBound>
+          <Elements>4</Elements>
+        </ArrayInfo>
+        <BitSize>5504</BitSize>
+        <BitOffs>33563520</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>fbEPS</Name>
+        <Type Namespace="LCLS_General">FB_EPS</Type>
+        <BitSize>128</BitSize>
+        <BitOffs>33569024</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bAllPortsLocked</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>33569152</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>iReqNewPort</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>33569168</BitOffs>
+        <Default>
+          <Value>1</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>iNumPorts</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>33569184</BitOffs>
+        <Default>
+          <Value>4</Value>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>bExternalSignal</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>33569200</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bOverride</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>33569208</BitOffs>
+        <Default>
+          <Bool>false</Bool>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>fbTestTimer</Name>
+        <Type Namespace="Tc2_Standard">TON</Type>
+        <BitSize>256</BitSize>
+        <BitOffs>33569216</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bTestInit</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>33569472</BitOffs>
+        <Default>
+          <Bool>true</Bool>
+        </Default>
+      </SubItem>
+      <Method>
+        <Name>TestLockedPortMovesWithOverrideExpectPortToMove</Name>
+        <ReturnType Namespace="TcUnit" ReferenceTo="true">FB_Test</ReturnType>
+        <ReturnBitSize>64</ReturnBitSize>
+        <Local>
+          <Name>fbViciEPS</Name>
+          <Type>FB_VICI_EPS_LOGIC</Type>
+          <BitSize>1536</BitSize>
+        </Local>
+        <Local>
+          <Name>aEPS</Name>
+          <Type>E_VICI_PORT_EPS</Type>
+          <ArrayInfo>
+            <LBound>1</LBound>
+            <Elements>4</Elements>
+          </ArrayInfo>
+          <BitSize>5504</BitSize>
+        </Local>
+        <Local>
+          <Name>fbEPS</Name>
+          <Type Namespace="LCLS_General">FB_EPS</Type>
+          <BitSize>128</BitSize>
+        </Local>
+        <Local>
+          <Name>bAllPortsLocked</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>iReqNewPort</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>iNumPorts</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>bExternalSignal</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>bOverride</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>fbTestTimer</Name>
+          <Type Namespace="Tc2_Standard">TON</Type>
+          <BitSize>256</BitSize>
+        </Local>
+        <Local>
+          <Name>iCount</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>__Index__0</Name>
+          <Type>DINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+      </Method>
+      <Method>
+        <Name>TestRequestEpsNotOkPortExpectNoPortChange</Name>
+        <ReturnType Namespace="TcUnit" ReferenceTo="true">FB_Test</ReturnType>
+        <ReturnBitSize>64</ReturnBitSize>
+        <Local>
+          <Name>fbViciEPS</Name>
+          <Type>FB_VICI_EPS_LOGIC</Type>
+          <BitSize>1536</BitSize>
+        </Local>
+        <Local>
+          <Name>aEPS</Name>
+          <Type>E_VICI_PORT_EPS</Type>
+          <ArrayInfo>
+            <LBound>1</LBound>
+            <Elements>4</Elements>
+          </ArrayInfo>
+          <BitSize>5504</BitSize>
+        </Local>
+        <Local>
+          <Name>fbEPS</Name>
+          <Type Namespace="LCLS_General">FB_EPS</Type>
+          <BitSize>128</BitSize>
+        </Local>
+        <Local>
+          <Name>bAllPortsLocked</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>iReqNewPort</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>iNumPorts</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>bExternalSignal</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>bOverride</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>__Index__0</Name>
+          <Type>DINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+      </Method>
+      <Method>
+        <Name>TestAllPortsLockedExpectbAllPortsLockedToBeTrue</Name>
+        <ReturnType Namespace="TcUnit" ReferenceTo="true">FB_Test</ReturnType>
+        <ReturnBitSize>64</ReturnBitSize>
+        <Local>
+          <Name>fbViciEPS</Name>
+          <Type>FB_VICI_EPS_LOGIC</Type>
+          <BitSize>1536</BitSize>
+        </Local>
+        <Local>
+          <Name>aEPS</Name>
+          <Type>E_VICI_PORT_EPS</Type>
+          <ArrayInfo>
+            <LBound>1</LBound>
+            <Elements>4</Elements>
+          </ArrayInfo>
+          <BitSize>5504</BitSize>
+        </Local>
+        <Local>
+          <Name>fbEPS</Name>
+          <Type Namespace="LCLS_General">FB_EPS</Type>
+          <BitSize>128</BitSize>
+        </Local>
+        <Local>
+          <Name>bAllPortsLocked</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>iReqNewPort</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>iNumPorts</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>bExternalSignal</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>bOverride</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>__Index__0</Name>
+          <Type>DINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+      </Method>
+      <Method>
+        <Name>TestEnableOverrideExpectOverrideToAutoRestAfterTimerExpires</Name>
+        <ReturnType Namespace="TcUnit" ReferenceTo="true">FB_Test</ReturnType>
+        <ReturnBitSize>64</ReturnBitSize>
+      </Method>
+      <Method>
+        <Name>TestActivePortBecomesLockedExpectExternalSignalSetTrue</Name>
+        <ReturnType Namespace="TcUnit" ReferenceTo="true">FB_Test</ReturnType>
+        <ReturnBitSize>64</ReturnBitSize>
+        <Local>
+          <Name>aEPS</Name>
+          <Type>E_VICI_PORT_EPS</Type>
+          <ArrayInfo>
+            <LBound>1</LBound>
+            <Elements>4</Elements>
+          </ArrayInfo>
+          <BitSize>5504</BitSize>
+        </Local>
+        <Local>
+          <Name>fbViciEPS</Name>
+          <Type>FB_VICI_EPS_LOGIC</Type>
+          <BitSize>1536</BitSize>
+        </Local>
+        <Local>
+          <Name>fbEPS</Name>
+          <Type Namespace="LCLS_General">FB_EPS</Type>
+          <BitSize>128</BitSize>
+        </Local>
+        <Local>
+          <Name>bAllPortsLocked</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>bExternalSignal</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>iReqNewPort</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>iNumPorts</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>bOverride</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>__Index__0</Name>
+          <Type>DINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+      </Method>
+      <Method>
+        <Name>TestEpsPortStatusChangeExpectPortStatusToChange</Name>
+        <ReturnType Namespace="TcUnit" ReferenceTo="true">FB_Test</ReturnType>
+        <ReturnBitSize>64</ReturnBitSize>
+        <Local>
+          <Name>fbViciEPS</Name>
+          <Type>FB_VICI_EPS_LOGIC</Type>
+          <BitSize>1536</BitSize>
+        </Local>
+        <Local>
+          <Name>aEPS</Name>
+          <Type>E_VICI_PORT_EPS</Type>
+          <ArrayInfo>
+            <LBound>1</LBound>
+            <Elements>4</Elements>
+          </ArrayInfo>
+          <BitSize>5504</BitSize>
+        </Local>
+        <Local>
+          <Name>fbEPS</Name>
+          <Type Namespace="LCLS_General">FB_EPS</Type>
+          <BitSize>128</BitSize>
+        </Local>
+        <Local>
+          <Name>bAllPortsLocked</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>iReqNewPort</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>iNumPorts</Name>
+          <Type>INT</Type>
+          <BitSize>16</BitSize>
+        </Local>
+        <Local>
+          <Name>bExternalSignal</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>bOverride</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+        <Local>
+          <Name>__Index__0</Name>
+          <Type>DINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+      </Method>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
       <Name>VERSION</Name>
       <BitSize>64</BitSize>
       <SubItem>
@@ -17918,7 +18679,7 @@ In case VRC is normally open</Comment>
           <AreaNo AreaType="Internal" CreateSymbols="true">3</AreaNo>
           <Name>PlcTask Internal</Name>
           <ContextId>0</ContextId>
-          <ByteSize>84082688</ByteSize>
+          <ByteSize>88342528</ByteSize>
           <Symbol>
             <Name>DefaultGlobals.stSys</Name>
             <Comment>Included for you</Comment>
@@ -25779,7 +26540,13 @@ In case VRC is normally open</Comment>
             <Name>PRG_TEST.fbRCC_TEST</Name>
             <BitSize>33618688</BitSize>
             <BaseType>FB_RCC_TEST</BaseType>
-            <BitOffs>633798208</BitOffs>
+            <BitOffs>633803904</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>PRG_TEST.fbViciEPS_TEST</Name>
+            <BitSize>33569536</BitSize>
+            <BaseType>FB_VICI_EPS_TEST</BaseType>
+            <BitOffs>667422592</BitOffs>
           </Symbol>
           <Symbol>
             <Name>Constants.RuntimeVersion</Name>
@@ -25809,7 +26576,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667417984</BitOffs>
+            <BitOffs>700993216</BitOffs>
           </Symbol>
           <Symbol>
             <Name>Constants.CompilerVersion</Name>
@@ -25839,7 +26606,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667418048</BitOffs>
+            <BitOffs>700993280</BitOffs>
           </Symbol>
           <Symbol>
             <Name>Constants.nRegisterSize</Name>
@@ -25854,7 +26621,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667418112</BitOffs>
+            <BitOffs>700993344</BitOffs>
           </Symbol>
           <Symbol>
             <Name>Constants.nPackMode</Name>
@@ -25869,7 +26636,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667418128</BitOffs>
+            <BitOffs>700993360</BitOffs>
           </Symbol>
           <Symbol>
             <Name>Constants.RuntimeVersionNumeric</Name>
@@ -25884,7 +26651,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667418144</BitOffs>
+            <BitOffs>700993376</BitOffs>
           </Symbol>
           <Symbol>
             <Name>Constants.CompilerVersionNumeric</Name>
@@ -25899,7 +26666,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667418176</BitOffs>
+            <BitOffs>700993408</BitOffs>
           </Symbol>
           <Symbol>
             <Name>Constants.bMulticoreSupport</Name>
@@ -25913,7 +26680,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667418208</BitOffs>
+            <BitOffs>700993440</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TwinCAT_LicenseInfoVarList._LicenseInfo</Name>
@@ -25982,7 +26749,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667418240</BitOffs>
+            <BitOffs>700993472</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList._AppInfo</Name>
@@ -25996,7 +26763,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667419264</BitOffs>
+            <BitOffs>700994496</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList._TaskInfo</Name>
@@ -26014,7 +26781,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667421312</BitOffs>
+            <BitOffs>700996544</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList._TaskPouOid_PlcTask</Name>
@@ -26028,7 +26795,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667422336</BitOffs>
+            <BitOffs>700997568</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList._TaskOid_PlcTask</Name>
@@ -26042,7 +26809,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667422368</BitOffs>
+            <BitOffs>700997600</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList.__PlcTask</Name>
@@ -26063,7 +26830,7 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667422400</BitOffs>
+            <BitOffs>700997632</BitOffs>
           </Symbol>
           <Symbol>
             <Name>TC_EVENTS.LCLSGeneralEventClass</Name>
@@ -26089,14 +26856,14 @@ In case VRC is normally open</Comment>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
-            <BitOffs>667473728</BitOffs>
+            <BitOffs>701048960</BitOffs>
           </Symbol>
         </DataArea>
         <DataArea>
           <AreaNo AreaType="RetainSrc" CreateSymbols="true">4</AreaNo>
           <Name>PlcTask Retains</Name>
           <ContextId>0</ContextId>
-          <ByteSize>84082688</ByteSize>
+          <ByteSize>88342528</ByteSize>
           <Symbol>
             <Name>PMPS_GVL.SuccessfulPreemption</Name>
             <Comment> Any time BPTM applies a new BP request which is confirmed</Comment>
@@ -26161,15 +26928,15 @@ In case VRC is normally open</Comment>
         </Property>
         <Property>
           <Name>ChangeDate</Name>
-          <Value>2025-10-28T08:52:25</Value>
+          <Value>2026-07-23T13:30:43</Value>
         </Property>
         <Property>
           <Name>GeneratedCodeSize</Name>
-          <Value>573440</Value>
+          <Value>589824</Value>
         </Property>
         <Property>
           <Name>GlobalDataSize</Name>
-          <Value>83075072</Value>
+          <Value>87273472</Value>
         </Property>
       </Properties>
     </Module>

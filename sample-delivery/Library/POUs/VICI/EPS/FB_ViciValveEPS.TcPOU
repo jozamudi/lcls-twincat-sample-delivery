@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_ViciValveEPS" Id="{bc7ef07e-b156-4d0d-9141-185cefafbb6f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ViciValveEPS
+VAR_INPUT
+    iAddress : INT;
+    iNumOfPorts : INT;
+END_VAR
+VAR_IN_OUT
+    aPortEPS : ARRAY [*] OF E_VICI_PORT_EPS; // EPS for each port.
+END_VAR
+VAR_OUTPUT
+    bAllPortsLocked : BOOL;
+    bExternalLock : BOOL;
+END_VAR
+VAR
+    {attribute 'pytmc' := '
+        pv: iReqPos
+        io: io
+     '}
+    iReqPos : INT;
+
+    {attribute 'pytmc' := '
+    pv: PORT
+    io: o
+    '}
+    iNewPortPos : INT;
+    {attribute 'pytmc' := '
+    pv: EPS
+    io: o
+    '}
+    fbViciEPS : FB_VICI_EPS_LOGIC;
+
+    {attribute 'pytmc' := 'pv: OVRD_MODE'}
+    bEPS_Override : BOOL := FALSE;
+
+    {attribute 'pytmc' := 'pv: OVRD_COUNTDOWN'}
+    tEPS_TimerCountDown : STRING := TIME_TO_STRING(T#0s);
+
+    fbNporValve : FB_ViciValve;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[iReqPos := LIMIT(1,iReqPos, iNumOfPorts); // KEEP EPS array index within bounds
+
+fbViciEPS(aPortEPS := aPortEPS,
+    iReqPort := iReqPos,
+    iPrevPort := iNewPortPos,
+    bOverride := bEPS_Override,
+    iNumPorts := iNumOfPorts,
+    bExternalLockSignal => bExternalLock,
+    bAllPortsLocked => bAllPortsLocked,
+    iNewPortPos => iNewPortPos,
+    tEPS_TimerCountDown => tEPS_TimerCountDown);
+
+iReqPos := iNewPortPos; // Update iReqPos PV  to be the safe port, otherwise when EPS is cleared the requested port would automatically change.
+
+fbNporValve(iAddress := iAddress,
+            iNumOfPorts := iNumOfPorts,
+            iReqPos := iNewPortPos);
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
